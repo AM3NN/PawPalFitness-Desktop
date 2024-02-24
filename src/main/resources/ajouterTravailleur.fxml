@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AjouterTravailleur">
+   <stylesheets>
+      <URL value="@styles.css" />
+   </stylesheets>
+   <children>
+      <Rectangle fill="#00000010" height="481.0" layoutX="86.0" layoutY="29.0" width="600.0" />
+      <TextField fx:id="nom_t" layoutX="143.0" layoutY="60.0" prefHeight="28.0" prefWidth="220.0" promptText="Nom ..." styleClass="textfield-design" stylesheets="@styles.css" />
+      <TextField fx:id="prenom_t" layoutX="427.0" layoutY="60.0" prefHeight="28.0" prefWidth="220.0" promptText="Prenom ..." styleClass="textfield-design" stylesheets="@styles.css" />
+      <TextField fx:id="age_t" layoutX="144.0" layoutY="150.0" prefHeight="28.0" prefWidth="220.0" promptText="Age ..." styleClass="textfield-design" stylesheets="@styles.css" />
+      <TextField fx:id="region_t" layoutX="427.0" layoutY="150.0" prefHeight="28.0" prefWidth="220.0" promptText="Region ..." styleClass="textfield-design" stylesheets="@styles.css" />
+      <TextField fx:id="email_t" layoutX="145.0" layoutY="235.0" prefHeight="28.0" prefWidth="220.0" promptText="Email ..." styleClass="textfield-design" stylesheets="@styles.css" />
+      <PasswordField fx:id="password_t" layoutX="427.0" layoutY="235.0" prefHeight="28.0" prefWidth="220.0" promptText="Password ..." styleClass="textfield-design" stylesheets="@styles.css"> </PasswordField>
+      <TextField fx:id="diplome_t" layoutX="146.0" layoutY="322.0" prefHeight="28.0" prefWidth="220.0" promptText="Diplome ..." styleClass="textfield-design" stylesheets="@styles.css" />
+      <TextField fx:id="experience_t" layoutX="427.0" layoutY="322.0" prefHeight="28.0" prefWidth="220.0" promptText="Experience ..." styleClass="textfield-design" stylesheets="@styles.css" />
+      <TextField fx:id="langue_t" layoutX="147.0" layoutY="411.0" prefHeight="28.0" prefWidth="220.0" promptText="Langue ..." styleClass="textfield-design" stylesheets="@styles.css" />
+      <TextField fx:id="categorie_t" layoutX="427.0" layoutY="411.0" prefHeight="28.0" prefWidth="220.0" promptText="Categorie ..." styleClass="textfield-design" stylesheets="@styles.css" />
+      <Button fx:id="btn_t" layoutX="356.0" layoutY="458.0" mnemonicParsing="false" onAction="#addTravailleur" prefHeight="40.0" prefWidth="70.0" styleClass="button-design" stylesheets="@styles.css" text="SignUp" textFill="WHITE" />
+      <Button onAction="#showTravailleur" text="Show Travailleur" />
+
+   </children>
+</AnchorPane>
