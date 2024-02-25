@@ -21,7 +21,6 @@
       <TextField fx:id="email_id" layoutX="157.0" layoutY="315.0" prefHeight="28.0" prefWidth="220.0" promptText="Email ..." styleClass="textfield-design" stylesheets="@styles.css" />
       <PasswordField fx:id="password_id" layoutX="441.0" layoutY="315.0" prefHeight="28.0" prefWidth="220.0" promptText="Password ..." styleClass="textfield-design" stylesheets="@styles.css"> </PasswordField>
       <Button fx:id="btn_id" layoutX="365.0" layoutY="395.0" mnemonicParsing="false" onAction="#addPerson" prefHeight="40.0" prefWidth="70.0" styleClass="button-design" stylesheets="@styles.css" text="S'inscrire" textFill="WHITE" />
-      <Button onAction="#showPersons" text="Show Persons" />
       <Hyperlink fx:id="signin_acc" layoutX="336.0" layoutY="450.0" onAction="#SignIn" text="Already have an account?" />
    </children>
 </AnchorPane>

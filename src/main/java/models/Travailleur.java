@@ -1,6 +1,7 @@
 package models;
 
 public class Travailleur extends Personne {
+    private int id;
     private int personneId; // New property to hold the ID from the Personne table
     private String diplome;
     private String categorie;
@@ -22,12 +23,22 @@ public class Travailleur extends Personne {
         this.experience = experience;
     }
     public Travailleur(int id, int age, String nom, String prenom, String region, String email, String password, int roleId, int personneId, String diplome, String categorie, String langue, String experience) {
-        super(id, age, nom, prenom, region, email, password, roleId); // Passing roleId to the superclass constructor
+        super(id, age, nom, prenom, region, email, password, roleId);
         this.personneId = personneId;
         this.diplome = diplome;
         this.categorie = categorie;
         this.langue = langue;
         this.experience = experience;
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getPersonneId() {

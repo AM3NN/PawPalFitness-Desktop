@@ -2,16 +2,21 @@ package GUI;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
 import models.Personne;
 import services.PersonneService;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 public class AfficherPersonne {
     @FXML
@@ -59,8 +64,7 @@ public class AfficherPersonne {
     @FXML
     private TextField password_modif;
 
-    @FXML
-    private Button btn_modif;
+
 
     @FXML
     private Button btn_supprimer;
@@ -89,39 +93,41 @@ public class AfficherPersonne {
                     password_modif.setText(newValue.getPassword());
                 }
             });
-
-            btn_modif.setOnAction(event -> {
-                Personne selectedPersonne = table_id.getSelectionModel().getSelectedItem();
-                if (selectedPersonne != null) {
-                    selectedPersonne.setNom(nom_modif.getText());
-                    selectedPersonne.setPrenom(prenom_modif.getText());
-                    selectedPersonne.setAge(Integer.parseInt(age_modif.getText()));
-                    selectedPersonne.setRegion(region_modif.getText());
-                    selectedPersonne.setEmail(email_modif.getText());
-                    selectedPersonne.setPassword(password_modif.getText());
-                    try {
-                        personneService.modifier(selectedPersonne);
-                        table_id.refresh();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-
-                }
-            });
-
             btn_supprimer.setOnAction(event -> {
                 Personne selectedPersonne = table_id.getSelectionModel().getSelectedItem();
                 if (selectedPersonne != null) {
-                    try {
-                        personneService.supprimer(selectedPersonne.getId());
-                        table_id.getItems().remove(selectedPersonne);
-                    } catch (SQLException e) {
-                        e.printStackTrace();
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Confirmation");
+                    alert.setHeaderText("Supprimer la personne");
+                    alert.setContentText("Voulez-vous vraiment supprimer la personne ?");
+
+                    Optional<ButtonType> result = alert.showAndWait();
+                    if (result.isPresent() && result.get() == ButtonType.OK) {
+                        try {
+                            personneService.supprimer(selectedPersonne.getId());
+                            table_id.getItems().remove(selectedPersonne);
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             });
 
+
         } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void Home(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Back.fxml"));
+            Parent signInRoot = loader.load();
+            Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            primaryStage.setScene(new Scene(signInRoot));
+            primaryStage.setTitle("Back");
+            primaryStage.show();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

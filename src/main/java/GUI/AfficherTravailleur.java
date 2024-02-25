@@ -2,16 +2,21 @@ package GUI;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
 import models.Travailleur;
 import services.TravailleurService;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 public class AfficherTravailleur {
     @FXML
@@ -87,9 +92,6 @@ public class AfficherTravailleur {
     private TextField experiencet_modif;
 
     @FXML
-    private Button btn_modif;
-
-    @FXML
     private Button btn_supprimer;
 
     private TravailleurService travailleurService = new TravailleurService();
@@ -97,18 +99,7 @@ public class AfficherTravailleur {
     @FXML
     public void initialize() {
         try {
-            id_t.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
-            nom_t.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNom()));
-            prenom_t.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPrenom()));
-            age_t.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getAge()).asObject());
-            region_t.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getRegion()));
-            email_t.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEmail()));
-            password_t.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPassword()));
-            roleId_t.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getRoleId()).asObject());
-            diplome_t.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDiplome()));
-            categorie_t.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCategorie()));
-            langue_t.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getLangue()));
-            experience_t.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getExperience()));
+            setCellValueFactories(); // Call the method to set cell value factories
 
             List<Travailleur> travailleurs = travailleurService.recuperer();
             table_id.getItems().setAll(travailleurs);
@@ -120,7 +111,7 @@ public class AfficherTravailleur {
                     regiont_modif.setText(newValue.getRegion());
                     emailt_modif.setText(newValue.getEmail());
                     passwordt_modif.setText(newValue.getPassword());
-                    roleIdt_modif.setText(Integer.toString(newValue.getRoleId()));
+                    roleIdt_modif.setText(Integer.toString(newValue.getId())); // Update with the correct ID property
                     diplomet_modif.setText(newValue.getDiplome());
                     categoriet_modif.setText(newValue.getCategorie());
                     languet_modif.setText(newValue.getLangue());
@@ -128,43 +119,53 @@ public class AfficherTravailleur {
                 }
             });
 
-            btn_modif.setOnAction(event -> {
-                Travailleur selectedTravailleur = table_id.getSelectionModel().getSelectedItem();
-                if (selectedTravailleur != null) {
-                    selectedTravailleur.setNom(nomt_modif.getText());
-                    selectedTravailleur.setPrenom(prenomt_modif.getText());
-                    selectedTravailleur.setAge(Integer.parseInt(aget_modif.getText()));
-                    selectedTravailleur.setRegion(regiont_modif.getText());
-                    selectedTravailleur.setEmail(emailt_modif.getText());
-                    selectedTravailleur.setPassword(passwordt_modif.getText());
-                    selectedTravailleur.setRoleId(Integer.parseInt(roleIdt_modif.getText()));
-                    selectedTravailleur.setDiplome(diplomet_modif.getText());
-                    selectedTravailleur.setCategorie(categoriet_modif.getText());
-                    selectedTravailleur.setLangue(languet_modif.getText());
-                    selectedTravailleur.setExperience(experiencet_modif.getText());
-                    try {
-                        travailleurService.modifier(selectedTravailleur);
-                        table_id.refresh();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-
-                }
-            });
-
             btn_supprimer.setOnAction(event -> {
                 Travailleur selectedTravailleur = table_id.getSelectionModel().getSelectedItem();
                 if (selectedTravailleur != null) {
-                    try {
-                        travailleurService.supprimer(selectedTravailleur.getId());
-                        table_id.getItems().remove(selectedTravailleur);
-                    } catch (SQLException e) {
-                        e.printStackTrace();
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Confirmation");
+                    alert.setHeaderText("Supprimer le travailleur");
+                    alert.setContentText("Voulez-vous vraiment supprimer le travailleur ?");
+                    Optional<ButtonType> result = alert.showAndWait();
+                    if (result.isPresent() && result.get() == ButtonType.OK) {
+                        try {
+                            travailleurService.supprimer(selectedTravailleur.getId());
+                            table_id.getItems().remove(selectedTravailleur);
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             });
-
         } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void setCellValueFactories() {
+        id_t.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
+        nom_t.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNom()));
+        prenom_t.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPrenom()));
+        age_t.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getAge()).asObject());
+        region_t.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getRegion()));
+        email_t.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEmail()));
+        password_t.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPassword()));
+        roleId_t.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject()); // Update with the correct ID property
+        diplome_t.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDiplome()));
+        categorie_t.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCategorie()));
+        langue_t.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getLangue()));
+        experience_t.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getExperience()));
+    }
+
+    public void Home(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Back.fxml"));
+            Parent signInRoot = loader.load();
+            Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            primaryStage.setScene(new Scene(signInRoot));
+            primaryStage.setTitle("Back");
+            primaryStage.show();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

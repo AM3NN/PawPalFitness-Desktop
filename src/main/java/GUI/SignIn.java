@@ -2,6 +2,8 @@ package GUI;
 
 import java.io.IOException;
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,6 +22,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import utils.MyDabase;
 
 public class SignIn {
@@ -90,20 +93,38 @@ public class SignIn {
 
         try {
             connection = MyDabase.getInstance().getConnection();
-            preparedStatement = connection.prepareStatement("SELECT * FROM personne WHERE email = ? AND password = ?");
+            preparedStatement = connection.prepareStatement("SELECT id, password FROM personne WHERE email = ?");
             preparedStatement.setString(1, email);
-            preparedStatement.setString(2, password);
             resultSet = preparedStatement.executeQuery();
-
-            if (resultSet.next()) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Home.fxml"));
+            if (email.equals("amenallah.laouini@esprit.tn") && password.equals("1234")) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Back.fxml"));
                 Parent homeRoot = loader.load();
                 Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 primaryStage.setScene(new Scene(homeRoot, 800, 550));
-                primaryStage.setTitle("Main Application");
+                primaryStage.setTitle("Back");
                 primaryStage.show();
+                showAlert("Welcome Admin!");
+            } else if (resultSet.next()) {
+                int userId = resultSet.getInt("id"); // Retrieve the user ID
+                String hashedPasswordFromDB = resultSet.getString("password");
+                String hashedPassword = hashPassword(password);
+                if (hashedPassword.equals(hashedPasswordFromDB)) {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/Home.fxml"));
+                    Parent homeRoot = loader.load();
+                    Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    primaryStage.setScene(new Scene(homeRoot, 800, 550));
+                    primaryStage.setTitle("Home");
 
-                showAlert("Login successful!");
+                    // Pass the user ID to the controller of the next scene
+                    Home homeController = loader.getController();
+                    homeController.setUserId(userId);
+
+                    primaryStage.show();
+
+                    showAlert("Login successful!");
+                } else {
+                    showAlert("Invalid email or password. Please try again.");
+                }
             } else {
                 showAlert("Invalid email or password. Please try again.");
             }
@@ -111,23 +132,18 @@ public class SignIn {
             e.printStackTrace();
             showAlert("Error occurred during login. Please try again later.");
         } finally {
-            if (resultSet != null) {
-                try {
+            try {
+                if (resultSet != null) {
                     resultSet.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
                 }
-            }
-            if (preparedStatement != null) {
-                try {
+                if (preparedStatement != null) {
                     preparedStatement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
                 }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
-
 
 
     private void showAlert(String message) {
@@ -146,5 +162,21 @@ public class SignIn {
     @FXML
     void initialize() {
         // Initialization logic if needed
+    }
+    private String hashPassword(String password) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hashedBytes = digest.digest(password.getBytes());
+
+            StringBuilder stringBuilder = new StringBuilder();
+            for (byte b : hashedBytes) {
+                stringBuilder.append(String.format("%02x", b));
+            }
+
+            return stringBuilder.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null; // Handle error accordingly
+        }
     }
 }

@@ -27,7 +27,7 @@ public class TravailleurService implements IService<Travailleur> {
             personneStatement.setString(4, travailleur.getRegion());
             personneStatement.setString(5, travailleur.getEmail());
             personneStatement.setString(6, travailleur.getPassword());
-            personneStatement.setInt(7, travailleur.getRoleId()); // Set the role_id here
+            personneStatement.setInt(7, travailleur.getRoleId());
 
             int affectedRows = personneStatement.executeUpdate();
             if (affectedRows == 0) {
@@ -63,8 +63,22 @@ public class TravailleurService implements IService<Travailleur> {
 
     @Override
     public void supprimer(int id) throws SQLException {
-        // Implement supprimer logic
+        String travailleurSql = "DELETE travailleur FROM travailleur INNER JOIN personne " +
+                "ON travailleur.personne_id = personne.id " +
+                "WHERE personne.role_id = 3 AND personne.id = ?";
+        String personneSql = "DELETE FROM personne WHERE id = ? AND role_id = 3";
+
+        try (PreparedStatement travailleurStatement = connection.prepareStatement(travailleurSql);
+             PreparedStatement personneStatement = connection.prepareStatement(personneSql)) {
+            travailleurStatement.setInt(1, id);
+            travailleurStatement.executeUpdate();
+
+            // Then, delete the personne record based on id and role_id
+            personneStatement.setInt(1, id);
+            personneStatement.executeUpdate();
+        }
     }
+
 
     @Override
     public List<Travailleur> recuperer() throws SQLException {
@@ -73,7 +87,8 @@ public class TravailleurService implements IService<Travailleur> {
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                int personneId = resultSet.getInt("personne_id");
+                int id = resultSet.getInt("id");
+
                 String nom = resultSet.getString("nom");
                 String prenom = resultSet.getString("prenom");
                 int age = resultSet.getInt("age");
@@ -90,6 +105,19 @@ public class TravailleurService implements IService<Travailleur> {
             }
         }
         return travailleurs;
+    }
+
+    public boolean travailleurExists(String email) throws SQLException {
+        String sql = "SELECT COUNT(*) AS count FROM personne WHERE email = ? AND role_id = 3";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, email);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                int count = resultSet.getInt("count");
+                return count > 0;
+            }
+        }
+        return false;
     }
 
 }
