@@ -1,0 +1,119 @@
+.btn_SideBar{
+    -fx-background-color:none;
+    -fx-cursor:hand;
+    -fx-text-fill: white;
+    -fx-font-size: 19px;
+    -fx-font-family:"Arial Nova";
+}
+
+.btn_SideBar:hover{
+    -fx-text-fill:linear-gradient(to bottom right,#B45040,#377fa7);
+}
+.btn_Sub{
+    -fx-background-color:none;
+    -fx-cursor:hand;
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-font-family:"Arial Nova";
+}
+
+.btn_Sub:hover{
+    -fx-text-fill:linear-gradient(to bottom right,#B45040,#377fa7);
+}
+.btn_NavBar{
+    -fx-background-color:none;
+    -fx-cursor:hand;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-family:"Arial Nova";
+}
+
+.btn_NavBar:hover{
+    -fx-text-fill:linear-gradient(to bottom right,#B45040,#377fa7);
+}
+
+.home{
+    -fx-font-weight: bold;
+    -fx-background-color:none;
+    -fx-cursor:hand;
+    -fx-text-fill: white;
+}
+
+.btn_Espaces{
+    -fx-font-family: "Bauhaus 93";
+    -fx-background-color:#B45040;
+    -fx-text-fill: #011936;
+    -fx-font-size: 15px;
+    -fx-background-radius:18px;
+}
+
+.rectangle{
+    -fx-background-radius:5px;
+}
+
+.btn_CRUD{
+    -fx-background-color: #d28477;
+    -fx-cursor:hand;
+    -fx-text-fill: #011936;
+    -fx-font-weight: bold;
+    -fx-background-radius:8px;
+    -fx-pref-width: 130px;
+}
+
+.btn_IntSOLO{
+    -fx-background-color: #B45040;
+    -fx-cursor:hand;
+    -fx-text-fill: #011936;
+    -fx-font-weight: bold;
+    -fx-background-radius:8px;
+    -fx-pref-width: 130px;
+}
+
+.textfield-design{
+    -fx-background-color:transparent;
+    -fx-background-radius:10px;
+    -fx-border-color:linear-gradient(to bottom right,#B45040,#377fa7);
+    -fx-border-radius:10px;
+    -fx-text-inner-color:#000;
+}
+.button-design{
+    -fx-background-color:linear-gradient(to bottom right,#B45040,#377fa7);
+    -fx-background-radius:20px;
+    -fx-cursor:hand;
+
+}
+.button-design:hover{
+    -fx-background-color:linear-gradient(to bottom left,#517ab5,#ae44a5);
+    -fx-background-radius:20px;
+    -fx-cursor:hand;
+
+}
+.hypertext-design{
+    -fx-text-fill: #011936;
+    -fx-underline:false;
+    -fx-border-color:transparent;
+}
+.hypertext-design:hover{
+    -fx-underline:true;
+}
+.type_animal{
+    -fx-font-family: "Bauhaus 93";
+    -fx-text-fill: #011936;
+    -fx-font-size: 25px;
+}
+
+.profile_animaltitre{
+    -fx-font-family: "Bauhaus 93";
+    -fx-text-fill: #011936;
+    -fx-font-size: 25px;
+    -fx-background-color: none;
+    -fx-border-color: none;
+}
+
+.profile_animalStitre{
+    -fx-font-family: "Bauhaus 93";
+    -fx-text-fill: #b45040;
+    -fx-font-size: 15px;
+    -fx-background-color: none;
+    -fx-border-color: none;
+}
