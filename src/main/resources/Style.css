@@ -1,0 +1,52 @@
+.btn_SideBar{
+    -fx-background-color:none;
+    -fx-cursor:hand;
+    -fx-text-fill: white;
+    -fx-font-size: 19px;
+    -fx-font-family:"Arial Nova";
+}
+
+.btn_SideBar:hover{
+    -fx-text-fill:linear-gradient(to bottom right,#B45040,#377fa7);
+}
+.btn_Sub{
+    -fx-background-color:none;
+    -fx-cursor:hand;
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-font-family:"Arial Nova";
+}
+
+.btn_Sub:hover{
+    -fx-text-fill:linear-gradient(to bottom right,#B45040,#377fa7);
+}
+.btn_NavBar{
+    -fx-background-color:none;
+    -fx-cursor:hand;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-family:"Arial Nova";
+}
+
+.btn_NavBar:hover{
+    -fx-text-fill:linear-gradient(to bottom right,#B45040,#377fa7);
+}
+
+.home{
+    -fx-font-weight: bold;
+    -fx-background-color:none;
+    -fx-cursor:hand;
+    -fx-text-fill: white;
+}
+
+.btn_Espaces{
+    -fx-font-family: "Bauhaus 93";
+    -fx-background-color:#B45040;
+    -fx-text-fill: #011936;
+    -fx-font-size: 15px;
+    -fx-background-radius:18px;
+}
+
+.rectangle{
+    -fx-background-radius:5px;
+}
