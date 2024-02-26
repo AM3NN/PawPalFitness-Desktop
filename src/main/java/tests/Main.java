@@ -1,31 +1,45 @@
 package tests;
 
-import models.Personne;
-import models.Travailleur;
-import services.PersonneService;
-import services.TravailleurService;
-import utils.MyDabase;
+
+import models.CategorieProduit;
+import models.Produit;
+import services.ProduitService;
+import utils.MyDataBase;
 
 import java.sql.SQLException;
 
 public class Main {
+    public static void main (String [] args){
+        //MyDataBase db=new MyDataBase();
 
-    public static void main(String [] args){
+        String categ = "PreWorkout";
+        CategorieProduit categorieProduit = CategorieProduit.valueOf(categ);
 
-
-        //MyDabase d=MyDabase.getInstance();
-
-        TravailleurService t=new TravailleurService();
-
+        ProduitService ps=new ProduitService();
+        /*
         try {
-            t.ajouter(new Travailleur(18, "laouini", "amen", "manouba", "amenallah.laouini@esprit.tn", "aaaa", 2, "String diplome", "aa", "arabe", "0"));
+            ps.ajouterPrd(new Produit("01","BSN","blabla",22.5,"C:/Users/EYA/Desktop/Esprit/PI/gestion des produits/categories/PreWorkout/BSN.jpg",categorieProduit));
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+
         try {
-            System.out.println(t.recuperer());
+            ps.ajouterPrd(new Produit("PRD03","tt","blaa",52.5,"C:/Users/EYA/Desktop/Esprit/PI/gestion des produits/categories/PreWorkout/BSN.jpg",categorieProduit));
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        }
+
+
+        try {
+            ps.modifierPrd(new Produit(2,"PRD01","test","boubou",38.9,"C:/Users/EYA/Desktop/Esprit/PI/gestion des produits/categories/PreWorkout/BSN.jpg",categorieProduit));
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }*/
+
+        try {
+            ps.supprimerPrd(2);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 }
