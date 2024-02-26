@@ -1,29 +1,31 @@
 package tests;
-
-import models.Personne;
-import models.Travailleur;
-import services.PersonneService;
-import services.TravailleurService;
-import utils.MyDabase;
-
 import java.sql.SQLException;
+
+import models.Reservation;
+import services.ReservationService;
 
 public class Main {
 
     public static void main(String [] args){
 
+        //MyDatabase d=MyDatabase.getInstance();
 
-        //MyDabase d=MyDabase.getInstance();
-
-        TravailleurService t=new TravailleurService();
+        ReservationService rs=new ReservationService();
+        //try {
+          //  rs.ajouter(new Reservation(1,"2024-02-01","20:42:09","22:42:09","Courant",2,50));
+        //} catch (SQLException e) {
+          //  System.out.println(e.getMessage());
+        //}
 
         try {
-            t.ajouter(new Travailleur(18, "laouini", "amen", "manouba", "amenallah.laouini@esprit.tn", "aaaa", 2, "String diplome", "aa", "arabe", "0"));
+            rs.modifier(new Reservation(
+            ));
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+
         try {
-            System.out.println(t.recuperer());
+           System.out.println(rs.recuperer());
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
