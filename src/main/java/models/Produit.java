@@ -11,6 +11,8 @@ public class Produit {
     private String image;
     private CategorieProduit categorie;
 
+    public Produit(){}
+
     public Produit(int idP, String reference, String nom, String description, double prix, String image, CategorieProduit categorie) {
         this.idP = idP;
         this.reference = reference;
