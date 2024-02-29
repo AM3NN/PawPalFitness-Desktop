@@ -51,6 +51,9 @@ public class AjouterProduit {
     @FXML
     private Button ajouterProduitButton;
 
+    // Variable pour stocker l'URL de l'image
+    private String imageUrl;
+
     @FXML
     void initialize() {
 
@@ -74,7 +77,8 @@ public class AjouterProduit {
             File selectedFile = fileChooser.showOpenDialog(null);
             if (selectedFile != null) {
                 // Charger l'image sélectionnée dans l'ImageView
-                Image image = new Image(selectedFile.toURI().toString());
+                imageUrl = selectedFile.toURI().toString(); // Stocker l'URL de l'image
+                Image image = new Image(imageUrl); // Créer l'objet Image avec l'URL
                 imageView.setImage(image);
             }
         });
@@ -95,20 +99,20 @@ public class AjouterProduit {
             nouveauProduit.setNom(nomP.getText());
             nouveauProduit.setDescription(descrip.getText());
             nouveauProduit.setPrix(Double.parseDouble(prix.getText()));
-            nouveauProduit.setImage(String.valueOf(imageView.getImage())); // Assurez-vous de stocker l'image correctement
+            nouveauProduit.setImage(imageUrl); // Utiliser l'URL de l'image stockée
             nouveauProduit.setCategorie(convertirCategorie(categ.getValue()));
 
             // Appeler la méthode ajouterPrd de ProduitService
             ProduitService produitService = new ProduitService();
             try {
                 produitService.ajouterPrd(nouveauProduit);
-                Alert alert=new Alert(Alert.AlertType.INFORMATION);
-                alert.setContentText("Le produit a été ajouté avec succés !");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setContentText("Le produit a été ajouté avec succès !");
                 alert.show();
 
                 // Si l'ajout réussit, vous pouvez effectuer d'autres actions ici (par exemple, vider les champs de saisie)
             } catch (SQLException e) {
-                Alert alert=new Alert(Alert.AlertType.ERROR);
+                Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText(e.getMessage());
                 alert.show();
             }

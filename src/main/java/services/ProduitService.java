@@ -1,9 +1,11 @@
 package services;
 
+import javafx.scene.image.Image;
 import models.CategorieProduit;
 import models.Produit;
 import utils.MyDataBase;
 
+import java.io.File;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -72,6 +74,7 @@ public class ProduitService implements IService<Produit>{
 
     @Override
     public List<Produit> recupererPrd() throws SQLException {
+
         List<Produit> produits = new ArrayList<>();
         String req = "SELECT * FROM produit";
         PreparedStatement preparedStatement = connection.prepareStatement(req);
@@ -91,6 +94,8 @@ public class ProduitService implements IService<Produit>{
         }
 
         return produits;
+
+
     }
 
 

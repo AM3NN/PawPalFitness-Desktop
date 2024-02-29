@@ -1,4 +1,4 @@
-package controls;
+/*package controls;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -28,4 +28,4 @@ public class Home extends Application {
             throw new RuntimeException(e);
         }
     }
-}
+}*/
