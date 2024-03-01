@@ -10,6 +10,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
 
 <AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SignIn">
     <stylesheets>
@@ -48,4 +49,5 @@
       <Hyperlink fx:id="ForgotPwdLabel" layoutX="557.0" layoutY="431.0" onAction="#forgotPassword" text="Forgot password?" />
       <Hyperlink fx:id="SignUp" layoutX="578.0" layoutY="455.0" onAction="#SignUp" text="SignUp?" />
    </children>
+
 </AnchorPane>

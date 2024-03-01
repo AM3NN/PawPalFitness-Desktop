@@ -68,7 +68,6 @@ public class Profile {
                 age_mod.setText(resultSet.getString("age"));
                 region_mod.setText(resultSet.getString("region"));
                 email_mod.setText(resultSet.getString("email"));
-
                 password_mod.setText(resultSet.getString("password"));
             } else {
                 showAlert("User not found.");

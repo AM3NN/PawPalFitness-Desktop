@@ -100,3 +100,48 @@
 .rectangle{
     -fx-background-radius:5px;
 }
+/* Table View */
+.table-view {
+    -fx-background-color: #FFFFFF;
+}
+
+/* Table Header */
+.table-view .column-header-background {
+    -fx-background-color: linear-gradient(to bottom, #B45040, #377fa7);
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-text-fill: white;
+}
+
+/* Table Column Header */
+.table-view .column-header {
+    -fx-background-color: linear-gradient(to bottom, #FFFFFF, #377fa7);
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+/* Table Row */
+.table-row-cell {
+    -fx-background-color: #F5F5F5;
+}
+
+/* Alternating Row */
+.table-row-cell:odd {
+    -fx-background-color: #E0E0E0;
+}
+
+/* Selected Row */
+.table-row-cell:selected {
+    -fx-background-color: #B45040;
+    -fx-text-fill: white;
+}
+
+/* Table Cell Padding */
+.table-cell {
+    -fx-padding: 5px;
+}
+
+/* Table Cell Text Color */
+.table-cell {
+    -fx-text-fill: #333333;
+}

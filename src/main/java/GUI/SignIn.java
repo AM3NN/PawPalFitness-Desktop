@@ -1,14 +1,8 @@
 package GUI;
 
-import java.io.IOException;
-import java.net.URL;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ResourceBundle;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,17 +15,32 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import netscape.javascript.JSObject;
 import utils.MyDabase;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class SignIn {
+    @FXML
+    private WebView recaptchaWebView;
 
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
+    private WebEngine recaptchaWebEngine;
 
     @FXML
     private Hyperlink ForgotPwdLabel;
@@ -49,8 +58,12 @@ public class SignIn {
     private PasswordField password_signin;
 
     @FXML
-    void SignUp(ActionEvent event) {
+    void initialize() {
 
+    }
+
+    @FXML
+    void SignUp(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/SignUp.fxml"));
             Parent signInRoot = loader.load();
@@ -62,7 +75,6 @@ public class SignIn {
             e.printStackTrace();
         }
     }
-
 
     public void textfieldDesign() {
         if (this.email_signin.isFocused()) {
@@ -76,6 +88,16 @@ public class SignIn {
 
     @FXML
     void forgotPassword(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ForgotPassword.fxml"));
+            Parent signInRoot = loader.load();
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            primaryStage.setScene(new Scene(signInRoot));
+            primaryStage.setTitle("SignUp");
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -114,13 +136,9 @@ public class SignIn {
                     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     primaryStage.setScene(new Scene(homeRoot, 800, 550));
                     primaryStage.setTitle("Home");
-
-                    // Pass the user ID to the controller of the next scene
                     Home homeController = loader.getController();
                     homeController.setUserId(userId);
-
                     primaryStage.show();
-
                     showAlert("Login successful!");
                 } else {
                     showAlert("Invalid email or password. Please try again.");
@@ -146,6 +164,9 @@ public class SignIn {
     }
 
 
+
+
+
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Login");
@@ -159,10 +180,6 @@ public class SignIn {
         // Implement textfieldDesign for mouse event if needed
     }
 
-    @FXML
-    void initialize() {
-        // Initialization logic if needed
-    }
     private String hashPassword(String password) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
