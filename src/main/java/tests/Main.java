@@ -14,15 +14,15 @@ import java.text.SimpleDateFormat;
 public class Main {
     public static void main(String [] args) throws ParseException {
         //YasmineDatabase d=YasmineDatabase.getInstance();
-      /*  SalleService ss=new SalleService();*/
-     /* try {
-            ss.ajouter_salle(new Salle_de_sport("califonia","desciption california", Salle_de_sport.EnumRegion.Monastir,"image","adresse salle"));
+       SalleService ss=new SalleService();
+      try {
+            ss.ajouter_salle(new Salle_de_sport("salle ","hhh", Salle_de_sport.EnumRegion.Monastir,"image","adresse salle"));
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-*/
+
        /* try {
-            ss.modifier_salle(new Salle_de_sport(1,"califoniamodifierr","desciption californiamodiifeiir", Salle_de_sport.EnumRegion.Tunis,"image","adresse salle"));
+            ss.modifier_salle(new Salle_de_sport(6,"califoniamodifr","desciptionodiifeiir", Salle_de_sport.EnumRegion.Tunis,"image","adresse salle"));
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }*/
@@ -63,10 +63,10 @@ public class Main {
             System.out.println(e.getMessage());
         }*/
 
-        try {
+       /* try {
             System.out.println(aa.recuperer_abonnements());
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        }
+        }*/
     }
 }

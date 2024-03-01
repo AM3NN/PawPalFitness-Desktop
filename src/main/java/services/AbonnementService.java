@@ -15,16 +15,22 @@ public class AbonnementService implements IServiceAbonnement<Abonnement>{
         connection = YasmineDatabase.getInstance().getConnection();
     }
     @Override
+
+
     public void ajouter_abonnement(Abonnement abonnement) throws SQLException {
+        // Vérifier si le prix de l'abonnement est valide
+        if (abonnement.getPrix_abonnement() <= 0) {
+            throw new IllegalArgumentException("Le prix de l'abonnement doit être supérieur à zéro.");
+        }
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String dateDebut = sdf.format(abonnement.getDate_deb_abonnement());
         String dateFin = sdf.format(abonnement.getDate_fin_abonnement());
 
-        String req = "INSERT INTO `abonnement`(`id_salle`, `duree_abonnement`, `prix_abonnement`, `date_deb_abonnement`, `date_fin_abonnement`)" +"values('" + abonnement.getId_salle()+"','" + abonnement.getDuree_abonnement()+"' , '" + abonnement.getPrix_abonnement()+"', '" + dateDebut+"','" + dateFin+"' )";
+        String req = "INSERT INTO `abonnement`(`id_salle`, `duree_abonnement`, `prix_abonnement`, `date_deb_abonnement`, `date_fin_abonnement`)" +
+                "values('" + abonnement.getId_salle() + "','" + abonnement.getDuree_abonnement() + "' , '" + abonnement.getPrix_abonnement() + "', '" + dateDebut + "','" + dateFin + "' )";
         Statement statement = connection.createStatement();
         statement.executeUpdate(req);
-
     }
 
     @Override

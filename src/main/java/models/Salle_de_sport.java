@@ -10,13 +10,16 @@ public class Salle_de_sport {
 
 
 
+
     public enum EnumRegion{
         Ben_Arous,
         Tunis,
         Monastir,
         Ariana
     }
-
+    public static EnumRegion convertToEnumRegion(String regionString) {
+        return EnumRegion.valueOf(regionString);
+    }
     public Salle_de_sport() {
     }
 

@@ -9,27 +9,25 @@ import java.util.List;
 
 public class SalleService implements IService<Salle_de_sport>{
 
+
     private Connection connection;
+
     public SalleService(){
         connection = YasmineDatabase.getInstance().getConnection();
     }
+
     @Override
-
-
     public void ajouter_salle(Salle_de_sport salleDeSport) throws SQLException {
-        // Vérifier si le nom de la salle est vide
-        if (salleDeSport.getNom_salle() == null || salleDeSport.getNom_salle().isEmpty()) {
-            throw new IllegalArgumentException("Le nom de la salle ne peut pas être vide.");
+        // Vérifier si tous les champs sont remplis
+        if (salleDeSport.getNom_salle() == null || salleDeSport.getNom_salle().isEmpty()
+                || salleDeSport.getDescription_salle() == null || salleDeSport.getDescription_salle().isEmpty()
+                || salleDeSport.getRegion_salle() == null || salleDeSport.getImage_salle().isEmpty()
+                || salleDeSport.getAdresse_salle() == null || salleDeSport.getAdresse_salle().isEmpty()) {
+            throw new IllegalArgumentException("Tous les champs doivent être remplis.");
         }
 
-        // Vérifier si le nom de la salle est déjà utilisé
         if (isExistingSalle(salleDeSport.getNom_salle())) {
             throw new IllegalArgumentException("Le nom de la salle est déjà utilisé.");
-        }
-
-        // Vérifier si l'adresse de la salle est vide
-        if (salleDeSport.getAdresse_salle() == null || salleDeSport.getAdresse_salle().isEmpty()) {
-            throw new IllegalArgumentException("L'adresse de la salle ne peut pas être vide.");
         }
 
         // Ajouter la salle
@@ -44,6 +42,9 @@ public class SalleService implements IService<Salle_de_sport>{
         preparedStatement.executeUpdate();
     }
 
+
+
+
     // Méthode pour vérifier l'existence d'une salle de sport dans la base de données
     private boolean isExistingSalle(String nomSalle) throws SQLException {
         String req = "SELECT COUNT(*) AS count FROM `salle_de_sport` WHERE `nom_salle`=?";
@@ -56,7 +57,6 @@ public class SalleService implements IService<Salle_de_sport>{
         }
         return false;
     }
-
 
 
     @Override
@@ -106,4 +106,45 @@ public class SalleService implements IService<Salle_de_sport>{
     }
 
 
+
+    public Salle_de_sport getSalleParID(int idSalle) throws SQLException {
+        // Utilisez une requête SQL pour récupérer les détails de la salle de sport à partir de son ID
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        Salle_de_sport salle_de_sport = null;
+
+        try {
+            connection = statement.getConnection(); // Méthode pour obtenir la connexion à la base de données
+            String query = "SELECT * FROM votre_table WHERE id = ?";
+            statement = connection.prepareStatement(query);
+            statement.setInt(1, idSalle);
+            resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                // Récupérez les détails de la salle de sport à partir du résultat de la requête
+                String nomSalle = resultSet.getString("nom_salle");
+                String description = resultSet.getString("description");
+                String regionString = resultSet.getString("region");
+                Salle_de_sport.EnumRegion region = Salle_de_sport.convertToEnumRegion(regionString);
+                String adresse = resultSet.getString("adresse");
+                String image = resultSet.getString("image");
+
+                salle_de_sport = new Salle_de_sport(idSalle, nomSalle, description, region, adresse, image);
+            }
+        } finally {
+            // Fermez les ressources JDBC
+            if (resultSet != null) {
+                resultSet.close();
+            }
+            if (statement != null) {
+                statement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+
+        return salle_de_sport;
+    }
 }
