@@ -83,12 +83,14 @@ public class TravailleurService implements IService<Travailleur> {
     @Override
     public List<Travailleur> recuperer() throws SQLException {
         List<Travailleur> travailleurs = new ArrayList<>();
-        String sql = "SELECT * FROM personne JOIN travailleur ON personne.id = travailleur.personne_id WHERE personne.role_id = 3";
+        String sql = "SELECT travailleur.id AS travailleur_id, personne.*, travailleur.* " +
+                "FROM personne JOIN travailleur ON personne.id = travailleur.personne_id " +
+                "WHERE personne.role_id = 3";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-
+                int id = resultSet.getInt("travailleur_id"); // Retrieve travailleur ID
+                System.out.println("Retrieved travailleur ID: " + id); // Debug print
                 String nom = resultSet.getString("nom");
                 String prenom = resultSet.getString("prenom");
                 int age = resultSet.getInt("age");
@@ -100,12 +102,14 @@ public class TravailleurService implements IService<Travailleur> {
                 String categorie = resultSet.getString("categorie");
                 String langue = resultSet.getString("langue");
                 String experience = resultSet.getString("experience");
-                Travailleur travailleur = new Travailleur(age, nom, prenom, region, email, password, roleId, diplome, categorie, langue, experience);
+                Travailleur travailleur = new Travailleur(id, age, nom, prenom, region, email, password, roleId, diplome, categorie, langue, experience);
                 travailleurs.add(travailleur);
             }
         }
         return travailleurs;
     }
+
+
 
     public boolean travailleurExists(String email) throws SQLException {
         String sql = "SELECT COUNT(*) AS count FROM personne WHERE email = ? AND role_id = 3";

@@ -72,16 +72,16 @@
                 <Image url="@back-button.png" />
             </image>
         </ImageView>
-        <TextField fx:id="nomt_modif" editable="false" layoutX="202.0" layoutY="67.0" prefHeight="28.0" prefWidth="220.0" promptText="Nom ..." styleClass="textfield-design" stylesheets="@styles.css" />
-        <TextField fx:id="prenomt_modif" editable="false" layoutX="541.0" layoutY="67.0" prefHeight="28.0" prefWidth="220.0" promptText="Prenom ..." styleClass="textfield-design" stylesheets="@styles.css" />
-        <TextField fx:id="aget_modif" editable="false" layoutX="209.0" layoutY="139.0" prefHeight="28.0" prefWidth="220.0" promptText="Age ..." styleClass="textfield-design" stylesheets="@styles.css" />
-        <TextField fx:id="regiont_modif" editable="false" layoutX="541.0" layoutY="139.0" prefHeight="28.0" prefWidth="220.0" promptText="Region ..." styleClass="textfield-design" stylesheets="@styles.css" />
-        <TextField fx:id="emailt_modif" editable="false" layoutX="202.0" layoutY="230.0" prefHeight="28.0" prefWidth="220.0" promptText="Email ..." styleClass="textfield-design" stylesheets="@styles.css" />
-        <PasswordField fx:id="passwordt_modif" editable="false" layoutX="541.0" layoutY="230.0" prefHeight="28.0" prefWidth="220.0" promptText="Password ..." styleClass="textfield-design" stylesheets="@styles.css"> </PasswordField>
-        <TextField fx:id="diplomet_modif" editable="false" layoutX="209.0" layoutY="312.0" prefHeight="28.0" prefWidth="220.0" promptText="Diplome ..." styleClass="textfield-design" stylesheets="@styles.css" />
-        <TextField fx:id="categoriet_modif" editable="false" layoutX="541.0" layoutY="312.0" prefHeight="28.0" prefWidth="220.0" promptText="Categorie ..." styleClass="textfield-design" stylesheets="@styles.css" />
-        <TextField fx:id="languet_modif" editable="false" layoutX="215.0" layoutY="397.0" prefHeight="28.0" prefWidth="220.0" promptText="Langue ..." styleClass="textfield-design" stylesheets="@styles.css" />
-        <TextField fx:id="experiencet_modif" editable="false" layoutX="541.0" layoutY="397.0" prefHeight="28.0" prefWidth="220.0" promptText="Experience ..." styleClass="textfield-design" stylesheets="@styles.css" />
+        <TextField fx:id="nomt_modif"  layoutX="202.0" layoutY="67.0" prefHeight="28.0" prefWidth="220.0" promptText="Nom ..." styleClass="textfield-design" stylesheets="@styles.css" />
+        <TextField fx:id="prenomt_modif"  layoutX="541.0" layoutY="67.0" prefHeight="28.0" prefWidth="220.0" promptText="Prenom ..." styleClass="textfield-design" stylesheets="@styles.css" />
+        <TextField fx:id="aget_modif"  layoutX="209.0" layoutY="139.0" prefHeight="28.0" prefWidth="220.0" promptText="Age ..." styleClass="textfield-design" stylesheets="@styles.css" />
+        <TextField fx:id="regiont_modif"  layoutX="541.0" layoutY="139.0" prefHeight="28.0" prefWidth="220.0" promptText="Region ..." styleClass="textfield-design" stylesheets="@styles.css" />
+        <TextField fx:id="emailt_modif" layoutX="202.0" layoutY="230.0" prefHeight="28.0" prefWidth="220.0" promptText="Email ..." styleClass="textfield-design" stylesheets="@styles.css" />
+        <PasswordField fx:id="passwordt_modif"  layoutX="541.0" layoutY="230.0" prefHeight="28.0" prefWidth="220.0" promptText="Password ..." styleClass="textfield-design" stylesheets="@styles.css"> </PasswordField>
+        <TextField fx:id="diplomet_modif"  layoutX="209.0" layoutY="312.0" prefHeight="28.0" prefWidth="220.0" promptText="Diplome ..." styleClass="textfield-design" stylesheets="@styles.css" />
+        <TextField fx:id="categoriet_modif"  layoutX="541.0" layoutY="312.0" prefHeight="28.0" prefWidth="220.0" promptText="Categorie ..." styleClass="textfield-design" stylesheets="@styles.css" />
+        <TextField fx:id="languet_modif"  layoutX="215.0" layoutY="397.0" prefHeight="28.0" prefWidth="220.0" promptText="Langue ..." styleClass="textfield-design" stylesheets="@styles.css" />
+        <TextField fx:id="experiencet_modif"  layoutX="541.0" layoutY="397.0" prefHeight="28.0" prefWidth="220.0" promptText="Experience ..." styleClass="textfield-design" stylesheets="@styles.css" />
         <Button fx:id="btn_id" layoutX="445.0" layoutY="443.0" mnemonicParsing="false" onAction="#modifierPerson" prefHeight="40.0" prefWidth="70.0" styleClass="button-design" stylesheets="@styles.css" text="update" textFill="WHITE" />
 
         <Button id="btn_NavBar" layoutX="28.0" layoutY="504.0" mnemonicParsing="false" onAction="#Logout" prefHeight="30.0" prefWidth="146.0" styleClass="btn_NavBar" stylesheets="@styles.css" text="Quitter" />

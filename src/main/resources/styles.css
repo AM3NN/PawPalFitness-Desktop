@@ -145,3 +145,31 @@
 .table-cell {
     -fx-text-fill: #333333;
 }
+.recaptcha-instruction {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+}
+
+.recaptcha-input {
+    -fx-pref-width: 150px;
+    -fx-pref-height: 30px;
+    -fx-font-size: 14px;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-background-color: #f0f0f0;
+}
+
+.recaptcha-refresh {
+    -fx-pref-width: 100px;
+    -fx-pref-height: 30px;
+    -fx-font-size: 14px;
+    -fx-background-color: #403060;
+    -fx-text-fill: #FFFFFF;
+    -fx-border-radius: 5px;
+}
+
+.recaptcha-error {
+    -fx-font-size: 14px;
+    -fx-text-fill: #FF0000;
+}

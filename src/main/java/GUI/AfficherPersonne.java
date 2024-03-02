@@ -161,7 +161,6 @@ public class AfficherPersonne {
     }
 
     private boolean personneContainsSearchText(Personne personne, String searchText) {
-        // Check if any field of the Personne object contains the search text
         return personne.getNom().toLowerCase().contains(searchText.toLowerCase()) ||
                 personne.getPrenom().toLowerCase().contains(searchText.toLowerCase()) ||
                 String.valueOf(personne.getAge()).toLowerCase().contains(searchText.toLowerCase()) ||

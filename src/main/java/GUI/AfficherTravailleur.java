@@ -99,19 +99,22 @@ public class AfficherTravailleur {
     @FXML
     public void initialize() {
         try {
-            setCellValueFactories(); // Call the method to set cell value factories
-
+            setCellValueFactories();
             List<Travailleur> travailleurs = travailleurService.recuperer();
             table_id.getItems().setAll(travailleurs);
             table_id.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
                 if (newValue != null) {
+                    System.out.println("Selected Travailleur ID: " + newValue.getId()); // Debug line to print selected Travailleur's ID
+                    // You don't need to set the ID value to id_t column
+                    // id_t.setText(Integer.toString(newValue.getId())); // Remove this line
+
                     nomt_modif.setText(newValue.getNom());
                     prenomt_modif.setText(newValue.getPrenom());
                     aget_modif.setText(Integer.toString(newValue.getAge()));
                     regiont_modif.setText(newValue.getRegion());
                     emailt_modif.setText(newValue.getEmail());
                     passwordt_modif.setText(newValue.getPassword());
-                    roleIdt_modif.setText(Integer.toString(newValue.getId())); // Update with the correct ID property
+                    roleIdt_modif.setText(Integer.toString(newValue.getRoleId()));
                     diplomet_modif.setText(newValue.getDiplome());
                     categoriet_modif.setText(newValue.getCategorie());
                     languet_modif.setText(newValue.getLangue());
@@ -122,6 +125,7 @@ public class AfficherTravailleur {
             btn_supprimer.setOnAction(event -> {
                 Travailleur selectedTravailleur = table_id.getSelectionModel().getSelectedItem();
                 if (selectedTravailleur != null) {
+                    System.out.println("Selected Travailleur ID: " + selectedTravailleur.getId()); // Debug line to print selected Travailleur's ID
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                     alert.setTitle("Confirmation");
                     alert.setHeaderText("Supprimer le travailleur");
@@ -130,17 +134,26 @@ public class AfficherTravailleur {
                     if (result.isPresent() && result.get() == ButtonType.OK) {
                         try {
                             travailleurService.supprimer(selectedTravailleur.getId());
+                            System.out.println("Travailleur with ID " + selectedTravailleur.getId() + " has been deleted."); // Debug line to confirm deletion
                             table_id.getItems().remove(selectedTravailleur);
+                            System.out.println("Travailleur removed from TableView."); // Debug line to confirm removal from TableView
                         } catch (SQLException e) {
                             e.printStackTrace();
+                            System.err.println("Error occurred while deleting Travailleur: " + e.getMessage()); // Debug line to print error message
                         }
+                    } else {
+                        System.out.println("Deletion cancelled by user."); // Debug line to indicate cancellation
                     }
+                } else {
+                    System.out.println("No Travailleur selected for deletion."); // Debug line to indicate no selection
                 }
             });
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
 
     private void setCellValueFactories() {
         id_t.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
@@ -150,12 +163,14 @@ public class AfficherTravailleur {
         region_t.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getRegion()));
         email_t.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEmail()));
         password_t.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPassword()));
-        roleId_t.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject()); // Update with the correct ID property
+        roleId_t.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getRoleId()).asObject());
         diplome_t.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDiplome()));
         categorie_t.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCategorie()));
         langue_t.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getLangue()));
         experience_t.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getExperience()));
     }
+
+
 
     public void Home(ActionEvent actionEvent) {
         try {

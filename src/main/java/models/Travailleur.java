@@ -15,15 +15,9 @@ public class Travailleur extends Personne {
         this.langue = langue;
         this.experience = experience;
     }
-    public Travailleur(int personneId, String diplome, String categorie, String langue, String experience) {
-        this.personneId = personneId;
-        this.diplome = diplome;
-        this.categorie = categorie;
-        this.langue = langue;
-        this.experience = experience;
-    }
-    public Travailleur(int id, int age, String nom, String prenom, String region, String email, String password, int roleId, int personneId, String diplome, String categorie, String langue, String experience) {
-        super(id, age, nom, prenom, region, email, password, roleId);
+
+    public Travailleur(int personneId, int age, String nom, String prenom, String region, String email, String password, int roleId, String diplome, String categorie, String langue, String experience) {
+        super(age, nom, prenom, region, email, password, roleId);
         this.personneId = personneId;
         this.diplome = diplome;
         this.categorie = categorie;
@@ -31,12 +25,22 @@ public class Travailleur extends Personne {
         this.experience = experience;
     }
 
-    @Override
+    public Travailleur(int id, int age, String nom, String prenom, String region, String email, String password, int roleId, int personneId, String diplome, String categorie, String langue, String experience) {
+        super(id, age, nom, prenom, region, email, password, roleId);
+        this.id = id;
+        this.personneId = personneId;
+        this.diplome = diplome;
+        this.categorie = categorie;
+        this.langue = langue;
+        this.experience = experience;
+    }
+    public Travailleur() {
+
+    }
     public int getId() {
         return id;
     }
 
-    @Override
     public void setId(int id) {
         this.id = id;
     }
@@ -84,7 +88,7 @@ public class Travailleur extends Personne {
     @Override
     public String toString() {
         return "Travailleur{" +
-                "id=" + getId() +
+                "id=" + id +
                 ", age=" + getAge() +
                 ", nom='" + getNom() + '\'' +
                 ", prenom='" + getPrenom() + '\'' +

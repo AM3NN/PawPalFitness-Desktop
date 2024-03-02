@@ -3,6 +3,7 @@ package GUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -82,7 +83,6 @@ public class ForgotPassword {
         }
     }
 
-    // Generate a random code
     private String generateCode() {
         Random random = new Random();
         int code = random.nextInt(900000) + 100000;
@@ -91,14 +91,12 @@ public class ForgotPassword {
 
     @FXML
     void handleForgotPassword(ActionEvent event) {
-        this.email = emailField.getText(); // Update the instance variable
+        this.email = emailField.getText();
 
         if (this.email.isEmpty()) {
             showAlert("Please enter your email address.");
             return;
         }
-
-        // Retrieve nom and prenom from the database
         String nom = "";
         String prenom = "";
         try {
@@ -141,7 +139,7 @@ public class ForgotPassword {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/VerifyCode.fxml"));
             Parent verifyCodeRoot = loader.load();
             VerifyCode verifyCodeController = loader.getController();
-            verifyCodeController.initializeData(connection, email); // Pass the connection and email
+            verifyCodeController.initializeData(connection, email);
             Stage primaryStage = (Stage) emailField.getScene().getWindow();
             primaryStage.setScene(new Scene(verifyCodeRoot));
             primaryStage.setTitle("Verify Code");
@@ -173,8 +171,6 @@ public class ForgotPassword {
             message.setFrom(new InternetAddress(EMAIL_USERNAME));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipientEmail));
             message.setSubject("Password Reset Code");
-
-            // Modify the email body to include nom and prenom
             String emailBody = "Dear " + nom + " " + prenom + ",\n\n";
             emailBody += "Your verification code is: " + verificationCode + "\n\n";
             emailBody += "Best regards,\nPawPal Fitness\n\n";
@@ -200,5 +196,18 @@ public class ForgotPassword {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    public void signin(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/SignIn.fxml"));
+            Parent signInRoot = loader.load();
+            Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            primaryStage.setScene(new Scene(signInRoot));
+            primaryStage.setTitle("Sign In");
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
