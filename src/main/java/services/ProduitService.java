@@ -33,16 +33,16 @@ public class ProduitService implements IService<Produit>{
     }
 
     @Override
-    public void modifierPrd(Produit produit) throws SQLException {
-        String sql = "UPDATE `produit` SET `reference`=?,`nom`=?,`description`=?,`prix`=?,`image`=?,`categorie`=? WHERE idP=?";
+    public void modifierPrd(Produit produit, String reference) throws SQLException {
+        String sql = "UPDATE `produit` SET `nom`=?,`description`=?,`prix`=?,`image`=?,`categorie`=?,`reference`=? WHERE idP=?";
 
         PreparedStatement preparedStatement=connection.prepareStatement(sql);
-        preparedStatement.setString(1, produit.getReference());
-        preparedStatement.setString(2, produit.getNom());
-        preparedStatement.setString(3, produit.getDescription());
-        preparedStatement.setDouble(4,produit.getPrix());
-        preparedStatement.setString(5, produit.getImage());
-        preparedStatement.setString(6, produit.getCategorie().toString());
+        preparedStatement.setString(1, produit.getNom());
+        preparedStatement.setString(2, produit.getDescription());
+        preparedStatement.setDouble(3,produit.getPrix());
+        preparedStatement.setString(4, produit.getImage());
+        preparedStatement.setString(5, produit.getCategorie().toString());
+        preparedStatement.setString(6, produit.getReference());
         preparedStatement.setInt(7, produit.getIdP());
 
         preparedStatement.executeUpdate();
@@ -99,5 +99,5 @@ public class ProduitService implements IService<Produit>{
     }
 
 
-    
+
 }

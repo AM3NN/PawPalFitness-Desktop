@@ -7,10 +7,12 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import models.CategorieProduit;
 import models.Produit;
 import services.ProduitService;
 
+import java.io.File;
 import java.sql.SQLException;
 
 public class UpdateProduit {
@@ -39,10 +41,35 @@ public class UpdateProduit {
     @FXML
     private Button modifierProduitButton;
 
+    private Produit produit;
+    private String imageUrl;
+
+    private ProduitService produitService = new ProduitService();
+
     @FXML
     void initialize() {
         // Initialise les valeurs du ComboBox
         categ.getItems().addAll("Proteines", "Alimentation Sportive", "Vitamines", "PreWorkout", "Accessoires Nutrition");
+
+        // Gestionnaire d'événements pour le bouton de téléchargement de l'image
+        uploadImg.setOnAction(event -> {
+            // Création d'un FileChooser
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Choisir une image");
+
+            // Filtrer uniquement les fichiers image
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image files (*.jpg, *.jpeg, *.png)", "*.jpg", "*.jpeg", "*.png");
+            fileChooser.getExtensionFilters().add(extFilter);
+
+            // Afficher la boîte de dialogue de sélection de fichier et obtenir le fichier sélectionné
+            File selectedFile = fileChooser.showOpenDialog(null);
+            if (selectedFile != null) {
+                // Charger l'image sélectionnée dans l'ImageView
+                imageUrl = selectedFile.toURI().toString(); // Stocker l'URL de l'image
+                Image image = new Image(imageUrl); // Créer l'objet Image avec l'URL
+                imageView.setImage(image);
+            }
+        });
 
         // Gestionnaire d'événements pour le bouton de modification de produit
         modifierProduitButton.setOnAction(event -> {
@@ -55,19 +82,16 @@ public class UpdateProduit {
                 return; // Sortir de la méthode si un champ est vide
             }
 
-            // Crée un objet Produit avec les valeurs saisies
-            Produit produitModifie = new Produit();
-            produitModifie.setReference(Ref.getText());
-            produitModifie.setNom(nomP.getText());
-            produitModifie.setDescription(descrip.getText());
-            produitModifie.setPrix(Double.parseDouble(prix.getText()));
-            produitModifie.setImage(String.valueOf(imageView.getImage()));
-            produitModifie.setCategorie(CategorieProduit.valueOf(categ.getValue()));
+            // Met à jour les valeurs du produit
+            produit.setNom(nomP.getText());
+            produit.setDescription(descrip.getText());
+            produit.setPrix(Double.parseDouble(prix.getText()));
+            produit.setImage(imageUrl);
+            produit.setCategorie(CategorieProduit.valueOf(categ.getValue()));
 
             // Appelle la méthode modifierPrd de ProduitService
-            ProduitService produitService = new ProduitService();
             try {
-                produitService.modifierPrd(produitModifie);
+                produitService.modifierPrd(produit, produit.getReference());
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setContentText("Le produit a été modifié avec succès !");
                 alert.show();
@@ -80,6 +104,7 @@ public class UpdateProduit {
     }
 
     public void initData(Produit produit) {
+        this.produit = produit;
         Ref.setText(produit.getReference());
         nomP.setText(produit.getNom());
         descrip.setText(produit.getDescription());

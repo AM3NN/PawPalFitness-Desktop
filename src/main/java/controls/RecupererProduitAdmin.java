@@ -1,6 +1,9 @@
 package controls;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -11,6 +14,7 @@ import javafx.scene.layout.VBox;
 import models.Produit;
 import services.ProduitService;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -116,8 +120,15 @@ public class RecupererProduitAdmin {
 
     // Méthode pour charger l'interface de mise à jour du produit
     private void loadUpdateProduitScene(Produit produit) {
-        // Appeler la méthode pour charger l'interface de mise à jour du produit
-        UpdateProduit updateProduit = new UpdateProduit();
-        updateProduit.initData(produit);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UpdateProduit.fxml"));
+            Parent root = loader.load();
+            UpdateProduit updateProduit = loader.getController(); // Récupération du contrôleur de la nouvelle scène
+            updateProduit.initData(produit); // Initialisation des données du produit à mettre à jour
+            Scene currentScene = productContainer.getScene();
+            currentScene.setRoot(root); // Remplacement de la scène actuelle par la nouvelle scène
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
