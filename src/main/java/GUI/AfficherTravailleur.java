@@ -98,6 +98,7 @@ public class AfficherTravailleur {
 
     @FXML
     public void initialize() {
+
         try {
             setCellValueFactories();
             List<Travailleur> travailleurs = travailleurService.recuperer();
@@ -106,7 +107,7 @@ public class AfficherTravailleur {
                 if (newValue != null) {
                     System.out.println("Selected Travailleur ID: " + newValue.getId()); // Debug line to print selected Travailleur's ID
                     // You don't need to set the ID value to id_t column
-                    // id_t.setText(Integer.toString(newValue.getId())); // Remove this line
+                    id_t.setText(Integer.toString(newValue.getId())); // Remove this line
 
                     nomt_modif.setText(newValue.getNom());
                     prenomt_modif.setText(newValue.getPrenom());
@@ -142,10 +143,10 @@ public class AfficherTravailleur {
                             System.err.println("Error occurred while deleting Travailleur: " + e.getMessage()); // Debug line to print error message
                         }
                     } else {
-                        System.out.println("Deletion cancelled by user."); // Debug line to indicate cancellation
+                        System.out.println("Deletion cancelled by user."); 
                     }
                 } else {
-                    System.out.println("No Travailleur selected for deletion."); // Debug line to indicate no selection
+                    System.out.println("No Travailleur selected for deletion.");
                 }
             });
 
@@ -183,5 +184,8 @@ public class AfficherTravailleur {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void generatePDF(ActionEvent actionEvent) {
     }
 }
