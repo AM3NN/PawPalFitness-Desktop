@@ -58,7 +58,7 @@ public class HomeT {
         }
     }
 
-    private int getTravailleurIdFromDatabase(int userId) {
+   int getTravailleurIdFromDatabase(int userId) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -86,10 +86,13 @@ public class HomeT {
     @FXML
     void Home(ActionEvent event) {
         try {
+            int travailleurId = getTravailleurIdFromDatabase(userId); // Method to fetch the travailleur ID from the database
+
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeT.fxml"));
             Parent profileRoot = loader.load();
-            HomeT profileController = loader.getController();
-            profileController.setUserId(userId);
+            ProfileT profileController = loader.getController();
+            profileController.setUserId(travailleurId);
             Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             primaryStage.setScene(new Scene(profileRoot));
             primaryStage.setTitle("Home");
@@ -124,10 +127,11 @@ public class HomeT {
 
     public void TypeAnimal(ActionEvent actionEvent) {
         try {
+            int travailleurId = getTravailleurIdFromDatabase(userId); // Method to fetch the travailleur ID from the database
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/TypeAnimal1.fxml"));
             Parent profileRoot = loader.load();
             TypeAnimal1 profileController = loader.getController();
-            profileController.setUserId(userId);
+            profileController.setUserId(travailleurId);
             Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             primaryStage.setScene(new Scene(profileRoot));
             primaryStage.setTitle("Home");

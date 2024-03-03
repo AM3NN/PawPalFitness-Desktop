@@ -10,18 +10,18 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import models.Personne;
 import services.PersonneService;
-import java.io.IOException;
+import utils.MyDabase;
+
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import utils.MyDabase;
-
-import java.util.Objects;
 import java.util.Optional;
-
 
 public class Profile {
     @FXML
@@ -219,6 +219,57 @@ public class Profile {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
+
+    @FXML
+    void chatWithGPT(ActionEvent actionEvent) {
+        String prompt = "Hello, how are you?"; // Prompt to start the conversation
+        String apiKey = "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"; // Your OpenAI API Key
+        String model = "gpt-3.5-turbo"; // Model to use for the conversation
+
+        String response = chatGPT(prompt, apiKey, model);
+        showAlert("ChatGPT Response", response);
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private String chatGPT(String message, String apiKey, String model) {
+        try {
+            String url = "https://api.openai.com/v1/chat/completions";
+            HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Authorization", "Bearer " + apiKey);
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setDoOutput(true);
+
+            String body = "{\"model\": \"" + model + "\", \"messages\": [{\"role\": \"user\", \"content\": \"" + message + "\"}]}";
+            OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
+            writer.write(body);
+            writer.flush();
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                StringBuilder response = new StringBuilder();
+                try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        response.append(line);
+                    }
+                }
+                return response.toString();
+            } else {
+                return "Error: HTTP " + responseCode + " " + connection.getResponseMessage();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "Error occurred while communicating with ChatGPT: " + e.getMessage();
+        }
+    }
+
 }

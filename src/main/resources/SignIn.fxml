@@ -55,9 +55,6 @@
             </textFill>
         </MFXTextField>
         <MFXButton layoutX="720.0" layoutY="360.0" onAction="#refreshCaptcha" prefHeight="47.0" prefWidth="69.0" rippleColor="WHITE" style="-fx-background-color: #403060; -fx-text-fill: #FFFFFF;" stylesheets="@styles.css" text="Refrech" textFill="WHITE">
-            <font>
-                <Font name="Century Gothic Bold" size="14.0" />
-            </font>
         </MFXButton>
 
         <Button fx:id="login_btn" layoutX="572.0" layoutY="450.0" mnemonicParsing="false" onAction="#login" prefHeight="40.0" prefWidth="70.0" styleClass="button-design" stylesheets="@styles.css" text="Login" textFill="WHITE">

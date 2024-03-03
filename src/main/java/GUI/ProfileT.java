@@ -115,10 +115,12 @@ public class ProfileT {
     @FXML
     void Home(ActionEvent event) {
         try {
+            int travailleurId = getTravailleurIdFromDatabase(userId);
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeT.fxml"));
             Parent profileRoot = loader.load();
-            Home profileController = loader.getController();
-            profileController.setUserId(userId);
+            HomeT profileController = loader.getController();
+            profileController.setUserId(travailleurId);
             Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             primaryStage.setScene(new Scene(profileRoot));
             primaryStage.setTitle("Home");
@@ -209,13 +211,37 @@ public class ProfileT {
             return null;
         }
     }
+   private int getTravailleurIdFromDatabase(int userId) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        int travailleurId = -1;
 
+        try {
+            connection = MyDabase.getInstance().getConnection();
+            preparedStatement = connection.prepareStatement("SELECT id FROM travailleur WHERE personne_id = ?");
+            preparedStatement.setInt(1, userId);
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                travailleurId = resultSet.getInt("id");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle the exception (log it, show error message, etc.)
+        } finally {
+            // Close resources (if necessary)
+        }
+
+        return travailleurId;
+    }
     public void TypeAnimal(ActionEvent actionEvent) {
         try {
+            int travailleurId = getTravailleurIdFromDatabase(userId);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/TypeAnimal1.fxml"));
             Parent profileRoot = loader.load();
             TypeAnimal1 profileController = loader.getController();
-            profileController.setUserId(userId);
+            profileController.setUserId(travailleurId);
             Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             primaryStage.setScene(new Scene(profileRoot));
             primaryStage.setTitle("Home");

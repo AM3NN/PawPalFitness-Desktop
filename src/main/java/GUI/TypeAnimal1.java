@@ -2,6 +2,10 @@ package GUI;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -179,10 +183,12 @@ public class TypeAnimal1 {
 
     public void CheckProfile(ActionEvent actionEvent) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Profile.fxml"));
+            int travailleurId = getTravailleurIdFromDatabase(userId);
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ProfileT.fxml"));
             Parent profileRoot = loader.load();
-            Profile profileController = loader.getController();
-            profileController.setUserId(userId);
+            ProfileT profileController = loader.getController();
+            profileController.setUserId(travailleurId);
             Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             primaryStage.setScene(new Scene(profileRoot));
             primaryStage.setTitle("Home");
@@ -190,5 +196,30 @@ public class TypeAnimal1 {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private int getTravailleurIdFromDatabase(int userId) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        int travailleurId = -1;
+
+        try {
+            connection = MyDabase.getInstance().getConnection();
+            preparedStatement = connection.prepareStatement("SELECT id FROM travailleur WHERE personne_id = ?");
+            preparedStatement.setInt(1, userId);
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                travailleurId = resultSet.getInt("id");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle the exception (log it, show error message, etc.)
+        } finally {
+            // Close resources (if necessary)
+        }
+
+        return travailleurId;
     }
 }
