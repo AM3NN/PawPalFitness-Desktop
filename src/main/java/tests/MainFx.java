@@ -55,6 +55,7 @@ public class MainFX extends Application {
         }
 */
         //****
+        /*
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/RecupererProduitAdmin.fxml"));
             Parent root = loader.load();
@@ -63,6 +64,18 @@ public class MainFX extends Application {
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
+        }*/
+
+        //***********USER***
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherProduitUser.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
     }
 }

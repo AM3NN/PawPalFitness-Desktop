@@ -1,16 +1,23 @@
 package controls;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import models.CategorieProduit;
+import models.Commande;
 import models.Produit;
+import services.CommandeService;
 import services.ProduitService;
 
 import java.io.IOException;
@@ -18,7 +25,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecupererProduitAdmin {
+public class AfficherProduitUser {
 
     @FXML
     private VBox productContainer;
@@ -26,7 +33,11 @@ public class RecupererProduitAdmin {
     @FXML
     private VBox categoryContainer;
 
+    @FXML
+    private Button monPanier;
+
     private ProduitService produitService = new ProduitService();
+    private CommandeService commandeService = new CommandeService();
 
     @FXML
     public void initialize() {
@@ -143,54 +154,46 @@ public class RecupererProduitAdmin {
         AnchorPane.setLeftAnchor(priceLabel, 10.0);
         AnchorPane.setRightAnchor(priceLabel, 10.0); // Centrer le prix
 
-        // Créer un bouton pour mettre à jour le produit
-        Button updateButton = new Button("Mettre à jour le produit");
-        updateButton.setStyle("-fx-background-color: orange;");
-        updateButton.setOnAction(event -> {
-            // Appeler la méthode pour charger l'interface de mise à jour du produit
-            loadUpdateProduitScene(produit);
+        // Créer un bouton pour ajouter au panier
+        Button addToCartButton = new Button("Ajouter au panier");
+        addToCartButton.setStyle("-fx-background-color: green;");
+        addToCartButton.setOnAction(event -> {
+            Produit produitSelected = produit;
+            Commande commande = new Commande();
+            commandeService.ajouterProduitAuPanier(commande, produitSelected);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Ce produit est ajouté au panier");
+            alert.show();
         });
-        anchorPane.getChildren().add(updateButton);
-        AnchorPane.setTopAnchor(updateButton, 250.0);
-        AnchorPane.setLeftAnchor(updateButton, 10.0);
-        AnchorPane.setRightAnchor(updateButton, 10.0); // Centrer le bouton de mise à jour
-
-
-        // Créer un bouton pour supprimer le produit
-        Button deleteButton = new Button("Supprimer le produit");
-        deleteButton.setStyle("-fx-background-color: red;");
-        deleteButton.setOnAction(event -> {
-            try {
-                produitService.supprimerPrd(produit.getIdP());
-                loadProducts(); // Recharger la liste des produits après la suppression
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setContentText("Le produit a été supprimé avec succès !");
-                alert.show();
-            } catch (SQLException e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Erreur lors de la suppression du produit : " + e.getMessage());
-                alert.show();
-            }
-        });
-        anchorPane.getChildren().add(deleteButton);
-        AnchorPane.setTopAnchor(deleteButton, 280.0);
-        AnchorPane.setLeftAnchor(deleteButton, 10.0);
-        AnchorPane.setRightAnchor(deleteButton, 10.0); // Centrer le bouton de suppression
+        anchorPane.getChildren().add(addToCartButton);
+        AnchorPane.setTopAnchor(addToCartButton, 250.0);
+        AnchorPane.setLeftAnchor(addToCartButton, 10.0);
+        AnchorPane.setRightAnchor(addToCartButton, 10.0); // Centrer le bouton "Ajouter au panier"
 
         return anchorPane;
     }
 
-    // Méthode pour charger l'interface de mise à jour du produit
-    private void loadUpdateProduitScene(Produit produit) {
+    @FXML
+    private void monPanierClicked(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UpdateProduit.fxml"));
+            // Charger le fichier FXML de la vue du panier
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Panier.fxml"));
             Parent root = loader.load();
-            UpdateProduit updateProduit = loader.getController(); // Récupération du contrôleur de la nouvelle scène
-            updateProduit.initData(produit); // Initialisation des données du produit à mettre à jour
-            Scene currentScene = productContainer.getScene();
-            currentScene.setRoot(root); // Remplacement de la scène actuelle par la nouvelle scène
+
+            // Créer un nouveau contrôleur
+            Panier panierController = loader.getController();
+
+            // Passer à la nouvelle scène contenant la vue du panier
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            e.getMessage();
+            // Gérer les erreurs lors du chargement de la vue du panier
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Erreur lors du chargement du panier : " + e.getMessage());
+            alert.show();
         }
     }
 }

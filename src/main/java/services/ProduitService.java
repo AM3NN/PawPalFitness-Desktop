@@ -95,7 +95,29 @@ public class ProduitService implements IService<Produit>{
 
         return produits;
 
+    }
 
+
+
+    public List<Produit> filtrerParCategorie(CategorieProduit categorie) throws SQLException {
+        List<Produit> produitsFiltres = new ArrayList<>();
+        String sql = "SELECT * FROM produit WHERE categorie = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, categorie.toString());
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    Produit produit = new Produit();
+                    produit.setIdP(resultSet.getInt("idP"));
+                    produit.setNom(resultSet.getString("nom"));
+                    produit.setDescription(resultSet.getString("description"));
+                    produit.setPrix(resultSet.getDouble("prix"));
+                    produit.setImage(resultSet.getString("image"));
+                    produit.setCategorie(CategorieProduit.valueOf(resultSet.getString("categorie")));
+                    produitsFiltres.add(produit);
+                }
+            }
+        }
+        return produitsFiltres;
     }
 
 

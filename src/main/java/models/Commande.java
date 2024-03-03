@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Commande {
-    private int idC;
+    private static int idC;
     private int idUtilisateur;
     private String adresseUser;
     private Date dateCommande;
@@ -36,7 +36,7 @@ public class Commande {
         this.produits = produits;
     }
 
-    public int getIdCommande() {
+    public static int getIdCommande() {
         return idC;
     }
 
@@ -84,9 +84,7 @@ public class Commande {
         this.prixTotal = prixTotal;
     }
 
-    public List<Produit> getProduits() {
-        return produits;
-    }
+    public List<Produit> getProduits() { return produits; }
 
     public void setProduits(List<Produit> produits) {
         this.produits = produits;
@@ -94,10 +92,12 @@ public class Commande {
 
 
     public void ajouterProduit(Produit produit) {
+
         produits.add(produit);
     }
 
     public void supprimerProduit(Produit produit) {
+
         produits.remove(produit);
     }
 }
