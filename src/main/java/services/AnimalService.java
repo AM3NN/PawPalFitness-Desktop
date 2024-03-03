@@ -26,7 +26,7 @@ public class AnimalService implements IAnimal<Animal>{
 
     @Override
     public List<Animal> afficherAnimal() throws SQLException {
-        String req = "SELECT Nom,Age,Categorie,Type,Details,Poids FROM animal";
+        String req = "SELECT Nom,Age,Type,Details,Poids FROM animal";
         Statement statement = connection.createStatement();
 
         ResultSet resultat = statement.executeQuery(req);
@@ -35,9 +35,8 @@ public class AnimalService implements IAnimal<Animal>{
             Animal a = new Animal();
             a.setNom(resultat.getString("Nom"));
             a.setAge(resultat.getInt("Age"));
-            a.setCategorie(resultat.getString("Categorie"));
-            a.setCategorie(resultat.getString("Type"));
-            a.setCategorie(resultat.getString("Details"));
+            a.setType(resultat.getString("Type"));
+            a.setDetails(resultat.getString("Details"));
             a.setPoids(resultat.getFloat("Poids"));
             list.add(a);
         }
@@ -45,15 +44,14 @@ public class AnimalService implements IAnimal<Animal>{
     }
 
     @Override
-    public void modifierAnimal(Animal animal) throws SQLException {
-        String req="update animal set nom = ?, age = ?, type= ?,details = ?,poids= ? where nom = ?";
+    public void modifierAnimal(Animal animal,String n) throws SQLException {
+        String req="update animal set age = ?,details = ?,poids= ? where nom = ?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(req);
-        preparedStatement.setString(1, animal.getNom());
-        preparedStatement.setInt(2, animal.getAge());
-        preparedStatement.setString(3,animal.getType());
-        preparedStatement.setString(4,animal.getDetails());
-        preparedStatement.setFloat(5,animal.getPoids());
+        preparedStatement.setInt(1, animal.getAge());
+        preparedStatement.setString(2,animal.getDetails());
+        preparedStatement.setFloat(3,animal.getPoids());
+        preparedStatement.setString(4, n);
         preparedStatement.executeUpdate();
     }
 
@@ -85,7 +83,7 @@ public class AnimalService implements IAnimal<Animal>{
 
     @Override
     public List<Animal> animalparCategorie2() throws SQLException {
-        String req = "SELECT Nom,Age,Poids FROM animal WHERE Categorie='Chien'";
+        String req = "SELECT Nom,Age,Details,Poids FROM animal WHERE Categorie='Chien'";
         Statement statement = connection.createStatement();
 
         ResultSet resultat = statement.executeQuery(req);
@@ -94,6 +92,44 @@ public class AnimalService implements IAnimal<Animal>{
             Animal a = new Animal();
             a.setNom(resultat.getString("Nom"));
             a.setAge(resultat.getInt("Age"));
+            a.setDetails(resultat.getString("Details"));
+            a.setPoids(resultat.getFloat("Poids"));
+            list.add(a);
+        }
+        return list;
+    }
+
+        @Override
+        public List<Animal> animalParNom(String n) throws SQLException {
+            String req = "SELECT Age,Details,Poids FROM animal WHERE nom=?";
+            PreparedStatement statement = connection.prepareStatement(req);
+            statement.setString(1,n);
+
+            ResultSet resultat = statement.executeQuery();
+            List<Animal> list = new ArrayList<>();
+            while (resultat.next()){
+                Animal a = new Animal();
+                a.setAge(resultat.getInt("Age"));
+                a.setDetails(resultat.getString("Details"));
+                a.setPoids(resultat.getFloat("Poids"));
+                list.add(a);
+            }
+            return list;
+        }
+
+   @Override
+    public List<Animal> rechCaractere() throws SQLException {
+        String req = "SELECT Nom,Age,Details,Poids FROM animal WHERE nom LIKE ?";
+        PreparedStatement statement = connection.prepareStatement(req);
+        statement.setString(1,"_%");
+
+        ResultSet resultat = statement.executeQuery();
+        List<Models.Animal> list = new ArrayList<>();
+        while (resultat.next()){
+            Models.Animal a = new Models.Animal();
+            a.setNom(resultat.getString("Nom"));
+            a.setAge(resultat.getInt("Age"));
+            a.setDetails(resultat.getString("Details"));
             a.setPoids(resultat.getFloat("Poids"));
             list.add(a);
         }

@@ -1,7 +1,5 @@
 package Models;
 
-import java.util.Date;
-
 public class Animal {
     int IDA;
     int Age;
@@ -27,6 +25,12 @@ public class Animal {
         Age=age;
         Categorie = categorie;
         Type= type;
+        Details = details;
+        Poids = poids;
+    }
+
+    public Animal(int age, String details, float poids) {
+        Age=age;
         Details = details;
         Poids = poids;
     }

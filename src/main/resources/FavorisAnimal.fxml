@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ModifAnimal">
+
+<AnchorPane prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.FavorisAnimal">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#011936" height="550.0" stroke="TRANSPARENT" strokeType="INSIDE" width="174.0" />
       <Button id="btn_SideBar" fx:id="btn_profile" alignment="CENTER" layoutX="21.0" layoutY="153.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="110.0" styleClass="btn_SideBar" stylesheets="@Style.css" text="Profile" textAlignment="CENTER" />
@@ -55,19 +52,13 @@
             <Image url="@task.png" />
          </image>
       </ImageView>
-      <Button id="btn_NavBar" layoutX="28.0" layoutY="504.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="146.0" styleClass="btn_NavBar" stylesheets="@Style.css" text="Quitter" />
+      <Button id="btn_NavBar" fx:id="Qu" layoutX="28.0" layoutY="504.0" mnemonicParsing="false" onAction="#Quitter" prefHeight="30.0" prefWidth="146.0" styleClass="btn_NavBar" stylesheets="@Style.css" text="Quitter" />
       <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="131.0" layoutY="507.0">
          <image>
             <Image url="@back-button.png" />
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#011a36" height="42.0" layoutX="180.0" layoutY="1.0" stroke="TRANSPARENT" strokeType="INSIDE" width="618.0" />
-      <ImageView fitHeight="19.0" fitWidth="18.0" layoutX="735.0" layoutY="12.0">
-         <image>
-            <Image url="@user.png" />
-         </image>
-      </ImageView>
-      <Circle fill="#1f93ff00" layoutX="743.0" layoutY="22.0" radius="12.0" stroke="#2489ad" strokeType="INSIDE" strokeWidth="2.0" />
       <Button id="btn_NavBar" layoutX="312.0" layoutY="7.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="146.0" styleClass="btn_NavBar" stylesheets="@Style.css" text="Salles de Sports" />
       <Button id="btn_NavBar" layoutX="445.0" layoutY="8.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="109.0" styleClass="btn_NavBar" stylesheets="@Style.css" text="Entraîneurs" />
       <Button id="btn_NavBar" layoutX="547.0" layoutY="7.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="122.0" styleClass="btn_NavBar" stylesheets="@Style.css" text="Nutritionniste" />
@@ -77,32 +68,12 @@
             <Image url="@decon.png" />
          </image>
       </ImageView>
-      <Button id="btn_CRUD" fx:id="ajout" layoutX="247.0" layoutY="81.0" mnemonicParsing="false" onAction="#Ajouter" styleClass="btn_CRUD" stylesheets="@Style.css" text="Ajouter" />
-      <Button id="btn_IntSOLO" layoutX="434.0" layoutY="81.0" mnemonicParsing="false" styleClass="btn_IntSOLO" stylesheets="@Style.css" text="Modifier" />
-      <Button id="btn_CRUD" fx:id="supp" layoutX="614.0" layoutY="81.0" mnemonicParsing="false" onAction="#Supprimer" styleClass="btn_CRUD" stylesheets="@Style.css" text="Supprimer" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="400.0" layoutX="208.0" layoutY="132.0" stroke="BLACK" strokeType="INSIDE" width="576.0" />
-      <Label layoutX="277.0" layoutY="265.0" styleClass="hypertext-design" stylesheets="@Style.css" text="Age" />
-      <Label layoutX="408.0" layoutY="265.0" styleClass="hypertext-design" stylesheets="@Style.css" text="Poids" />
-      <TextField fx:id="IDa" layoutX="323.0" layoutY="261.0" prefHeight="27.0" prefWidth="39.0" styleClass="textfield-design" stylesheets="@Style.css" />
-      <TextField fx:id="IDp" layoutX="462.0" layoutY="261.0" prefHeight="27.0" prefWidth="54.0" styleClass="textfield-design" stylesheets="@Style.css" />
-      <Button layoutX="639.0" layoutY="451.0" mnemonicParsing="false" onAction="#Modifier" prefHeight="34.0" prefWidth="91.0" stylesheets="@Style.css" text="Modifier">
-         <styleClass>
-            <String fx:value="button-design" />
-            <String fx:value="hypertext-design" />
-         </styleClass></Button>
-      <Label layoutX="270.0" layoutY="328.0" styleClass="hypertext-design" stylesheets="@Style.css" text="Details" />
-      <TextArea fx:id="IDd" layoutX="319.0" layoutY="325.0" prefHeight="126.0" prefWidth="310.0" styleClass="textfield-design" stylesheets="@Style.css" />
-      <TextField fx:id="oldN" layoutX="310.0" layoutY="160.0" prefHeight="27.0" prefWidth="226.0" styleClass="textfield-design" stylesheets="@Style.css" />
-      <Label layoutX="263.0" layoutY="164.0" styleClass="hypertext-design" stylesheets="@Style.css" text="Nom" />
-      <Label layoutX="265.0" layoutY="208.0" styleClass="hypertext-design" stylesheets="@Style.css" text="Nouvelles Informations" textAlignment="CENTER" textFill="#3d47a4">
-         <font>
-            <Font size="19.0" />
-         </font>
-      </Label>
-      <Line endX="185.800048828125" layoutX="567.0" layoutY="223.0" startX="-100.0" />
-      <Line endX="-80.20001220703125" layoutX="341.0" layoutY="223.0" startX="-109.0" />
-      <Line endX="113.300048828125" endY="260.9999694824219" layoutX="640.0" layoutY="235.0" startX="113.300048828125" startY="-12.5" />
-      <Line endX="243.800048828125" endY="255.10000610351562" layoutX="509.0" layoutY="243.0" startX="-278.5" startY="255.10000610351562" />
-      <Line endX="113.0" endY="265.6000061035156" layoutX="118.0" layoutY="232.0" startX="113.0" startY="-9.0" />
+      <ImageView fitHeight="19.0" fitWidth="18.0" layoutX="735.0" layoutY="12.0">
+         <image>
+            <Image url="@user.png" />
+         </image>
+      </ImageView>
+      <Circle fill="#1f93ff00" layoutX="744.0" layoutY="22.0" radius="12.0" stroke="#2489ad" strokeType="INSIDE" strokeWidth="2.0" />
+      <VBox fx:id="Item" layoutX="189.0" layoutY="67.0" prefHeight="474.0" prefWidth="600.0" />
    </children>
 </AnchorPane>

@@ -55,7 +55,7 @@
             <Image url="@task.png" />
          </image>
       </ImageView>
-      <Button id="btn_NavBar" fx:id="Qu" layoutX="28.0" layoutY="504.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="146.0" styleClass="btn_NavBar" stylesheets="@Style.css" text="Quitter" />
+      <Button id="btn_NavBar" fx:id="Qu" layoutX="28.0" layoutY="504.0" mnemonicParsing="false" onAction="#Quitter" prefHeight="30.0" prefWidth="146.0" styleClass="btn_NavBar" stylesheets="@Style.css" text="Quitter" />
       <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="131.0" layoutY="507.0">
          <image>
             <Image url="@back-button.png" />

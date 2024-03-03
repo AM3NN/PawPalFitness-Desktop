@@ -52,7 +52,7 @@
             <Image url="@task.png" />
          </image>
       </ImageView>
-      <Button id="btn_NavBar" layoutX="28.0" layoutY="504.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="146.0" styleClass="btn_NavBar" stylesheets="@Style.css" text="Quitter" />
+      <Button id="btn_NavBar" layoutX="28.0" layoutY="504.0" mnemonicParsing="false" onAction="#Quitter" prefHeight="30.0" prefWidth="146.0" styleClass="btn_NavBar" stylesheets="@Style.css" text="Quitter" />
       <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="131.0" layoutY="507.0">
          <image>
             <Image url="@back-button.png" />
@@ -79,13 +79,13 @@
       <Button id="btn_IntSOLO" layoutX="607.0" layoutY="79.0" mnemonicParsing="false" styleClass="btn_IntSOLO" stylesheets="@Style.css" text="Supprimer" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="400.0" layoutX="201.0" layoutY="130.0" stroke="BLACK" strokeType="INSIDE" width="576.0" />
       <Button id="button-design" fx:id="supp" layoutX="658.0" layoutY="465.0" mnemonicParsing="false" onAction="#Supprimer" prefHeight="30.0" prefWidth="94.0" styleClass="button-design" stylesheets="@Style.css" text="Supprimer" />
-      <TableView layoutX="236.0" layoutY="151.0" prefHeight="290.0" prefWidth="374.0">
+      <TableView fx:id="table" layoutX="250.0" layoutY="159.0" prefHeight="290.0" prefWidth="376.0">
         <columns>
           <TableColumn fx:id="nom" editable="false" prefWidth="75.0" text="Nom" />
           <TableColumn fx:id="age" prefWidth="75.0" text="Age" />
-            <TableColumn fx:id="categorie" prefWidth="75.0" text="Categorie" />
             <TableColumn fx:id="type" prefWidth="75.0" text="Type" />
-            <TableColumn fx:id="poids" prefWidth="75.0" text="Poids" />
+            <TableColumn fx:id="poids" prefWidth="72.80002441406248" text="Poids" />
+            <TableColumn fx:id="details" prefWidth="75.0" text="Details" />
         </columns>
       </TableView>
    </children>

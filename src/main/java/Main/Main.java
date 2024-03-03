@@ -2,6 +2,7 @@ package Main;
 
 import Models.Animal;
 import Services.AnimalService;
+import Utils.APIConnector;
 import Utils.DB;
 
 import java.sql.SQLException;
@@ -9,8 +10,8 @@ import java.sql.SQLException;
 public class Main {
     public static void main(String [] args){
         //DB d = DB.getInstance();
-
-        AnimalService as = new AnimalService();
+        //APIConnector ap = new APIConnector("http://api.weatherapi.com/v1/current.json?key=bf46852e640a439382e104225240303&q=");
+        //AnimalService as = new AnimalService();
         /*try {
             as.ajouterAnimal(new Animal(7,"Rocky","chien", 25));
         } catch (SQLException e) {
@@ -23,7 +24,7 @@ public class Main {
             System.out.println(e.getMessage());;
         }*/
 
-        try {
+        /*try {
             System.out.println(as.afficherAnimal());
         } catch (SQLException e) {
             System.out.println(e.getMessage());;
@@ -34,6 +35,6 @@ public class Main {
                 System.out.println("done");
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }
+        }*/
     }
 }

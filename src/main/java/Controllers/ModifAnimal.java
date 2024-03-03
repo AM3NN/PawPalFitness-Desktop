@@ -3,6 +3,7 @@ package Controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -46,6 +47,9 @@ public class ModifAnimal {
     private TextArea IDd;
 
     @FXML
+    private TextField oldN;
+
+    @FXML
     private Button SU_Animal;
 
     @FXML
@@ -57,6 +61,8 @@ public class ModifAnimal {
     @FXML
     private Button btn_profile;
 
+    private AnimalService as=new AnimalService();
+
     @FXML
     void IntPAnimaux(ActionEvent event)throws IOException {
         Stage stage = (Stage) SU_Animal.getScene().getWindow();
@@ -66,43 +72,21 @@ public class ModifAnimal {
     }
 
     @FXML
-    void Modifier(ActionEvent event){
-        /*---------Modifier--------------
-        AnimalService animalService = new AnimalService();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjoutAnimal.fxml"));
-        AjoutAnimal ajoutAnimal = loader.getController();
-       String a = IDn.setText(ajoutAnimal.IDn.getText());
-        IDa.setText(ajoutAnimal.IDa.getText());
-        IDp.setText(ajoutAnimal.IDp.getText());
-        IDt.setText(ajoutAnimal.IDtype.getText());
-        IDd.setText(ajoutAnimal.IDam.getText());
-
-        Alert alert=new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Information");
-        /*ICONE alert*/
-       /* alert.setContentText(IDn.getText()+"Veillez saisir les nouvelles cordonnées");
-        alert.show();
-
-        animalService.modifierAnimal(IDn.getText(),Integer.parseInt(IDa.getText()),IDc.getText(),IDt.getText(),IDd.getText(), Float.parseFloat(IDp.getText()),a);*/
-
-        //-----------Ajouter nouvelles coordonnées-------------
-        Animal animal=new Animal(IDn.getText(), Integer.parseInt(IDa.getText()), IDc.getText(),IDt.getText(),IDd.getText(), Float.parseFloat(IDp.getText()));
-
-        try {
-            AnimalService animalService = new AnimalService();
-            animalService.ajouterAnimal(animal);
+    void Modifier(ActionEvent event)throws IOException,SQLException{
+        List<Animal> ax = as.animalParNom(oldN.getText());
+        Animal a = new Animal(Integer.parseInt(IDa.getText()),IDd.getText(),Float.parseFloat(IDp.getText()));
+        if (!ax.isEmpty()){
+            Animal animal= ax.get(0);
+            as.modifierAnimal(a,oldN.getText());
             Alert alert=new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Information");
             /*ICONE alert*/
-            alert.setContentText(IDn.getText()+" est modifié avec succées");
+            alert.setContentText("Les nouvelles informations de "+oldN.getText()+" sont modifiés avec succées");
             alert.show();
-            IDn.clear();
             IDa.clear();
             IDp.clear();
-            IDt.clear();
             IDd.clear();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());}
+        }
     }
 
     @FXML
@@ -123,6 +107,12 @@ public class ModifAnimal {
 
     @FXML
     void initialize() {
+        oldN.setPromptText("Donner le nom de votre animal");
+        IDa.setPromptText("age");
+        IDp.setPromptText("poids");
+        IDd.setPromptText("Nouveaux details");
     }
 
+    public void supprimer(ActionEvent event) {
+    }
 }
