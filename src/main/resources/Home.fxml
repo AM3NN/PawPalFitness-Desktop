@@ -20,8 +20,7 @@
          </font></Button>
       <Button id="btn_SideBar" layoutX="21.0" layoutY="202.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="121.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Planning" />
       <Button id="btn_SideBar" layoutX="17.0" layoutY="304.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="168.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Mes Produits" />
-      <Button id="btn_SideBar" fx:id="SU_Animal" layoutX="14.0" layoutY="253.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="174.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Mes Animaux" />
-      <ImageView fitHeight="34.0" fitWidth="39.0" layoutX="14.0" layoutY="22.0">
+      <Button id="btn_SideBar" fx:id="SU_Animal" layoutX="14.0" layoutY="253.0" mnemonicParsing="false" onAction="#TypeAnimal" prefHeight="43.0" prefWidth="174.0" styleClass="btn_SideBar" stylesheets="@Style.css" text="Mes Animaux" />      <ImageView fitHeight="34.0" fitWidth="39.0" layoutX="14.0" layoutY="22.0">
          <image>
             <Image url="@moree.png" />
          </image>

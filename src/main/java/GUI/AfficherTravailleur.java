@@ -142,7 +142,11 @@ public class AfficherTravailleur {
                             System.err.println("Error occurred while deleting Travailleur: " + e.getMessage()); // Debug line to print error message
                         }
                     } else {
+<<<<<<< Updated upstream
                         System.out.println("Deletion cancelled by user."); // Debug line to indicate cancellation
+=======
+                        System.out.println("Deletion cancelled by user.");
+>>>>>>> Stashed changes
                     }
                 } else {
                     System.out.println("No Travailleur selected for deletion."); // Debug line to indicate no selection

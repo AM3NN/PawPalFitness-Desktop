@@ -18,6 +18,8 @@ public class MainFx extends Application {
             Scene scene=new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.show();
+            primaryStage.setTitle("PawPalFitness");
+            primaryStage.getIcons().add(new javafx.scene.image.Image("logo.jpg"));
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

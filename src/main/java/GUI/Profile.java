@@ -6,10 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import models.Personne;
 import services.PersonneService;
@@ -22,11 +19,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import utils.MyDabase;
 
+import java.util.Objects;
 import java.util.Optional;
 
 
 public class Profile {
-
+    @FXML
+    private Button SU_Animal;
     @FXML
     private TextField nom_mod;
 
@@ -207,4 +206,19 @@ public class Profile {
         populateProfile(userId);
     }
 
+    public void TypeAnimal(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/TypeAnimal.fxml"));
+            Parent profileRoot = loader.load();
+            TypeAnimal profileController = loader.getController();
+            profileController.setUserId(userId);
+            Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            primaryStage.setScene(new Scene(profileRoot));
+            primaryStage.setTitle("Home");
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 }

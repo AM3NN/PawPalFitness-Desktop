@@ -2,6 +2,7 @@ package GUI;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -61,7 +62,7 @@ public class HomeT {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        int travailleurId = -1; // Default value in case no travailleur ID is found
+        int travailleurId = -1;
 
         try {
             connection = MyDabase.getInstance().getConnection();
@@ -87,7 +88,7 @@ public class HomeT {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeT.fxml"));
             Parent profileRoot = loader.load();
-            Profile profileController = loader.getController();
+            HomeT profileController = loader.getController();
             profileController.setUserId(userId);
             Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             primaryStage.setScene(new Scene(profileRoot));
@@ -100,7 +101,16 @@ public class HomeT {
 
     @FXML
     void Logout(ActionEvent event) {
-        // Add logout functionality here
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/SignIn.fxml"));
+            Parent signInRoot = loader.load();
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            primaryStage.setScene(new Scene(signInRoot));
+            primaryStage.setTitle("Sign In");
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -111,4 +121,20 @@ public class HomeT {
     public void setUserId(int userId) {
         this.userId = userId;
     }
+
+    public void TypeAnimal(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/TypeAnimal1.fxml"));
+            Parent profileRoot = loader.load();
+            TypeAnimal1 profileController = loader.getController();
+            profileController.setUserId(userId);
+            Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            primaryStage.setScene(new Scene(profileRoot));
+            primaryStage.setTitle("Home");
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
