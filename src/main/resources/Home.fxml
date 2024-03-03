@@ -18,7 +18,7 @@
          <font>
             <Font size="6.0" />
          </font></Button>
-      <Button id="btn_SideBar" layoutX="21.0" layoutY="202.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="121.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Planning" />
+      <Button id="btn_SideBar" fx:id="id_planning" layoutX="21.0" layoutY="202.0" mnemonicParsing="false" onAction="#Planning" prefHeight="41.0" prefWidth="121.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Planning" />
       <Button id="btn_SideBar" layoutX="17.0" layoutY="304.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="168.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Mes Produits" />
       <Button id="btn_SideBar" fx:id="SU_Animal" layoutX="14.0" layoutY="253.0" mnemonicParsing="false" onAction="#TypeAnimal" prefHeight="43.0" prefWidth="174.0" styleClass="btn_SideBar" stylesheets="@Style.css" text="Mes Animaux" />      <ImageView fitHeight="34.0" fitWidth="39.0" layoutX="14.0" layoutY="22.0">
          <image>
@@ -97,7 +97,7 @@
             <Image url="@back-button.png" />
          </image>
       </ImageView>
-      <Button id="btn_NavBar" layoutX="28.0" layoutY="504.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="146.0" styleClass="btn_NavBar" stylesheets="@styles.css" text="Quitter" onAction="#Logout"/>
+      <Button id="btn_NavBar" layoutX="28.0" layoutY="504.0" mnemonicParsing="false" onAction="#Logout" prefHeight="30.0" prefWidth="146.0" styleClass="btn_NavBar" stylesheets="@styles.css" text="Quitter" />
       <Hyperlink fx:id="btn_home" layoutX="189.0" layoutY="11.0" onAction="#Home" text="Home" />
    </children>
 </AnchorPane>

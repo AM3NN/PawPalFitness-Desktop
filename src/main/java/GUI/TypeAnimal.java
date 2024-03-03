@@ -191,4 +191,19 @@ public class TypeAnimal {
             e.printStackTrace();
         }
     }
+
+    public void Planning(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ShoppingPage.fxml"));
+            Parent profileRoot = loader.load();
+            ShoppingPage profileController = loader.getController();
+            profileController.setUserId(userId);
+            Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            primaryStage.setScene(new Scene(profileRoot));
+            primaryStage.setTitle("Planning");
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
