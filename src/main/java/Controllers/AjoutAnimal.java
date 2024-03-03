@@ -60,6 +60,13 @@ public class AjoutAnimal {
     private Button Qu;
 
 
+    @FXML
+    void Supprimer(ActionEvent event) throws IOException {
+        Stage stage = (Stage) SU_Animal.getScene().getWindow();
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/SupprimerAnimal.fxml")));
+        Scene scene = new Scene(root,800,550);
+        stage.setScene(scene);
+    }
 
     public String btnradio(String Rch1,String Rch2){
         if (Rchat.isSelected()) {

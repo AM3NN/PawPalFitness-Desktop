@@ -78,7 +78,7 @@
          </image>
       </ImageView>
       <Button id="btn_IntSOLO" layoutX="237.0" layoutY="71.0" mnemonicParsing="false" styleClass="btn_IntSOLO" stylesheets="@Style.css" text="Ajouter" />
-      <Button id="btn_CRUD" layoutX="414.0" layoutY="71.0" mnemonicParsing="false" styleClass="btn_CRUD" stylesheets="@Style.css" text="Supprimer" />
+      <Button id="btn_CRUD" layoutX="414.0" layoutY="71.0" mnemonicParsing="false" onAction="#Supprimer" styleClass="btn_CRUD" stylesheets="@Style.css" text="Supprimer" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="400.0" layoutX="198.0" layoutY="122.0" stroke="BLACK" strokeType="INSIDE" width="576.0" />
       <Label id="hypertext-design" layoutX="244.0" layoutY="166.0" styleClass="hypertext-design" stylesheets="@Style.css" text="Nom" />
       <Label id="hypertext-design" layoutX="246.0" layoutY="202.0" styleClass="hypertext-design" stylesheets="@Style.css" text="Age" />

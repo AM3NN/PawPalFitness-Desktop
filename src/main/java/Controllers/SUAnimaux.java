@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import Models.Animal;
 import Models.Favori;
 import Services.AnimalService;
+import Services.CatFactService;
 import Services.FavoriService;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -68,6 +69,19 @@ public class SuAnimaux {
     private ImageView favorites;
 
     private AnimalService as=new AnimalService();
+
+    @FXML
+    private Label catFactLabel;
+
+    @FXML
+    void getCatFact(MouseEvent event) {
+        String catFact = CatFactService.getRandomCatFact();
+        if (catFact != null) {
+            catFactLabel.setText(catFact);
+        } else {
+            catFactLabel.setText("Failed to fetch cat fact.");
+        }
+    }
 
     @FXML
     void IntPAnimaux(ActionEvent event) throws IOException {
@@ -239,6 +253,7 @@ public class SuAnimaux {
             /*ICONE alert*/
             alert.setContentText("Vous n'avez pas de chats pour le moment");
         }
+
     }
 
 }

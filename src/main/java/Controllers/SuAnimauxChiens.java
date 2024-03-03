@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import Models.Animal;
 import Models.Favori;
 import Services.AnimalService;
+import Services.DogImageService;
 import Services.FavoriService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -72,6 +73,19 @@ public class SuAnimauxChiens {
     private ImageView favorites;
 
     private AnimalService as=new AnimalService();
+
+    @FXML
+    private ImageView dogImageView;
+
+    @FXML
+    void getDogImage(ActionEvent event) {
+        String dogImageUrl = DogImageService.getRandomDogImage();
+        if (dogImageUrl != null) {
+            dogImageView.setImage(new Image(dogImageUrl));
+        } else {
+            System.out.println("Failed to fetch dog image.");
+        }
+    }
 
     @FXML
     void Ajouter(ActionEvent event) throws IOException {

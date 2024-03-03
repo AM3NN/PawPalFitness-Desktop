@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
+
+import Services.WeatherService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,11 +17,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextArea;
-import org.json.simple.JSONObject;
-import java.net.MalformedURLException;
-import Utils.APIConnector;
-import org.json.simple.parser.JSONParser;
-import javafx.scene.control.Label;
 
 public class TypeAnimal {
 
@@ -43,6 +40,19 @@ public class TypeAnimal {
 
     @FXML
     private TextArea temp;
+
+
+    //*************** WEATHER API ******************
+    @FXML
+    void getWeatherData(MouseEvent event) {
+        String catFact = WeatherService.getWeather();
+        if (catFact != null) {
+            temp.setText(catFact);
+        } else {
+            temp.setText("Failed to fetch");
+        }
+    }
+    //****************************************
 
     @FXML
     void Ajouter(ActionEvent event)throws IOException {
@@ -93,52 +103,6 @@ public class TypeAnimal {
         stage.setScene(scene);
     }
 
-    //*************** WEATHER API ******************
-    /*@FXML
-    void getWeatherData(ActionEvent event) {
-        String cit = city.getText();
-        if (!cit.isEmpty()) {
-            JSONObject weatherData = getWeatherDataFromAPI(cit);
-            if (weatherData != null) {
-                updateUI(weatherData);
-            } else {
-                System.out.println("Failed to retrieve weather data.");
-            }
-        } else {
-            System.out.println("Please enter a city name.");
-        }
-    }
-
-    private JSONObject getWeatherDataFromAPI(String city) {
-        try {
-            String apiKey = "bf46852e640a439382e104225240303";
-            String apiUrl = "http://api.weatherapi.com/v1/current.json?key=" + apiKey + "&q=" + city;
-            String responseData = new APIConnector(apiUrl).fetchData();
-            if (responseData != null) {
-                JSONParser parser = new JSONParser();
-                return (JSONObject) parser.parse(responseData);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    private void updateUI(JSONObject weatherData) {
-        JSONObject current = (JSONObject) weatherData.get("current");
-        if (current != null) {
-            String temperature = current.get("temp_c").toString();
-            String humidity = current.get("humidity").toString();
-            String condition = ((JSONObject) current.get("condition")).get("text").toString();
-
-            temperatureLabel.setText("Temperature: " + temperature + "°C");
-            humidityLabel.setText("Humidity: " + humidity + "%");
-            conditionLabel.setText("Condition: " + condition);
-        }
-    }*/
-
-
-    //****************************************
     @FXML
     void initialize() {
     }

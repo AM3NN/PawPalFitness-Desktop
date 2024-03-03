@@ -1,12 +1,5 @@
 package Main;
 
-import Models.Animal;
-import Services.AnimalService;
-import Utils.APIConnector;
-import Utils.DB;
-
-import java.sql.SQLException;
-
 public class Main {
     public static void main(String [] args){
         //DB d = DB.getInstance();
