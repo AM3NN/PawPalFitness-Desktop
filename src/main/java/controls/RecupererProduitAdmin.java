@@ -27,6 +27,10 @@ public class RecupererProduitAdmin {
 
     @FXML
     public void initialize() {
+        loadProducts();
+    }
+
+    private void loadProducts() {
         try {
             // Effacer les produits précédents s'ils existent
             productContainer.getChildren().clear();
@@ -110,6 +114,19 @@ public class RecupererProduitAdmin {
         // Créer un bouton pour supprimer le produit
         Button deleteButton = new Button("Supprimer le produit");
         deleteButton.setStyle("-fx-background-color: red;");
+        deleteButton.setOnAction(event -> {
+            try {
+                produitService.supprimerPrd(produit.getIdP());
+                loadProducts(); // Recharger la liste des produits après la suppression
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setContentText("Le produit a été supprimé avec succès !");
+                alert.show();
+            } catch (SQLException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Erreur lors de la suppression du produit : " + e.getMessage());
+                alert.show();
+            }
+        });
         anchorPane.getChildren().add(deleteButton);
         AnchorPane.setTopAnchor(deleteButton, 280.0);
         AnchorPane.setLeftAnchor(deleteButton, 10.0);
