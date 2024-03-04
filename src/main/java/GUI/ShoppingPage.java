@@ -30,6 +30,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import models.Produit;
 import utils.MyDabase;
 
 import javafx.scene.image.ImageView;
@@ -133,6 +134,21 @@ public class ShoppingPage {
             Parent profileRoot = loader.load();
             TypeAnimal profileController = loader.getController();
             profileController.setUserId(userId);
+            Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            primaryStage.setScene(new Scene(profileRoot));
+            primaryStage.setTitle("Home");
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void produit(javafx.event.ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherProduitUser.fxml"));
+            Parent profileRoot = loader.load();
+            AfficherProduitUser shoppingPageController = loader.getController();
+            shoppingPageController.setUserId(userId);
             Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             primaryStage.setScene(new Scene(profileRoot));
             primaryStage.setTitle("Home");

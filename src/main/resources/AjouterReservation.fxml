@@ -93,6 +93,8 @@
       <Button fx:id="Bpdf" layoutX="735.0" layoutY="524.0" mnemonicParsing="false" onAction="#generatePdfButtonClicked" text="Generate PDF" />
       <Button fx:id="Bstat" layoutX="658.0" layoutY="524.0" mnemonicParsing="false" onAction="#handleBstatButton" text="Statistiques" />
       <Button fx:id="btn_users" alignment="CENTER" layoutX="28.0" layoutY="158.0" mnemonicParsing="false" onAction="#CheckUsers" prefHeight="42.0" prefWidth="110.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Users" textAlignment="CENTER" />
+      <Button fx:id="btn_produit" alignment="CENTER" layoutX="28.0" layoutY="300.0" mnemonicParsing="false" onAction="#produit" prefHeight="42.0" prefWidth="110.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Produits" textAlignment="CENTER" />
+
       <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="16.0" layoutY="168.0">
          <image>
             <Image url="@profile.png" />

@@ -1,38 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.LineChart?>
-<?import javafx.scene.chart.NumberAxis?>
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Back">
+<AnchorPane prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.UpdateProduit">
+
+    <stylesheets>
+        <URL value="@styles.css" />
+    </stylesheets>
     <children>
-        <Label layoutX="180.0" layoutY="100.0" text="Number of Workers:" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#011936" height="557.0" layoutY="-4.0" stroke="TRANSPARENT" strokeType="INSIDE" width="174.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#011a36" height="56.0" layoutX="173.0" stroke="TRANSPARENT" strokeType="INSIDE" width="627.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#011936" height="557.0" layoutY="-4.0" stroke="TRANSPARENT" strokeType="INSIDE" width="174.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#011a36" height="56.0" layoutX="173.0" stroke="TRANSPARENT" strokeType="INSIDE" width="627.0" />
+        <Label layoutX="214.0" layoutY="196.0" text="Nom du Produit" />
+        <Label layoutX="218.0" layoutY="263.0" text="Description" />
+        <Label layoutX="218.0" layoutY="113.0" text="Référence" />
+        <Label layoutX="479.0" layoutY="113.0" text="Prix" />
+        <Label layoutX="512.0" layoutY="272.0" text="Image" />
+        <Label layoutX="479.0" layoutY="196.0" text="Catégorie" />
 
-        <!-- Label for displaying number of persons -->
-        <!-- Labels for displaying number of workers and persons -->
-        <Label layoutX="180.0" layoutY="100.0" text="Number of Workers:" />
-        <Label fx:id="workersCountLabel" layoutX="320.0" layoutY="100.0" />
-        <Label layoutX="180.0" layoutY="130.0" text="Number of Persons:" />
-        <Label fx:id="personsCountLabel" layoutX="320.0" layoutY="130.0" />
-
-        <!-- LineChart for displaying statistics -->
-        <LineChart fx:id="statisticsChart" layoutX="180.0" layoutY="200.0" prefHeight="300.0" prefWidth="600.0">
-            <xAxis>
-                <CategoryAxis side="BOTTOM" />
-            </xAxis>
-            <yAxis>
-                <NumberAxis side="LEFT" />
-            </yAxis>
-        </LineChart>
-
+        <TextField fx:id="Ref" editable="false" layoutX="214.0" layoutY="132.0" styleClass="textfield-design" stylesheets="@styles.css" />
+        <TextField fx:id="nomP" layoutX="214.0" layoutY="217.0" styleClass="textfield-design" stylesheets="@styles.css" />
+        <TextField fx:id="descrip" layoutX="214.0" layoutY="280.0" prefHeight="105.0" prefWidth="160.0" styleClass="textfield-design" stylesheets="@styles.css" />
+        <TextField fx:id="prix" layoutX="479.0" layoutY="132.0" styleClass="textfield-design" stylesheets="@styles.css" />
+        <ComboBox fx:id="categ" layoutX="479.0" layoutY="217.0" styleClass="textfield-design" stylesheets="@styles.css" />
+        <Button fx:id="modifierProduitButton" layoutX="683.0" layoutY="518.0" mnemonicParsing="false" styleClass="button-design" stylesheets="@styles.css" text="Modifier Produit" />
+        <Button fx:id="uploadImg" layoutX="548.0" layoutY="268.0" mnemonicParsing="false" styleClass="button-design" stylesheets="@styles.css" text="Upload" />
+        <ImageView fx:id="imageView" fitHeight="150" fitWidth="150" layoutX="501.0" layoutY="311.0" />
 
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#011936" height="550.0" stroke="TRANSPARENT" strokeType="INSIDE" width="174.0" />
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#011a36" height="42.0" layoutX="180.0" layoutY="4.0" stroke="TRANSPARENT" strokeType="INSIDE" width="618.0" />
@@ -72,19 +76,8 @@
             </image>
         </ImageView>
         <Button id="btn_NavBar" layoutX="28.0" layoutY="504.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="146.0" styleClass="btn_NavBar" stylesheets="@styles.css" text="Quitter" />
-        <Hyperlink fx:id="btn_home" layoutX="189.0" layoutY="11.0" text="Home" />
-        <Button id="btn_NavBar" layoutX="28.0" layoutY="504.0" mnemonicParsing="false" onAction="#Logout" prefHeight="30.0" prefWidth="146.0" styleClass="btn_NavBar" stylesheets="@styles.css" text="Quitter" />
-      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="5.0" layoutY="251.0">
-         <image>
-            <Image url="@subscription.png" />
-         </image>
-      </ImageView>
-      <Button id="btn_SideBar" fx:id="btn_produit" layoutX="14.0" layoutY="284.0" mnemonicParsing="false" onAction="#produit" prefHeight="42.0" prefWidth="158.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Produits" />
-      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="8.0" layoutY="293.0">
-         <image>
-            <Image url="@subscription.png" />
-         </image>
-      </ImageView>
+        <Hyperlink fx:id="btn_home" layoutX="173.0" layoutY="27.0" text="Home" />
+        <Button id="btn_NavBar" fx:id="btn_produit" layoutX="14.0" layoutY="284.0" mnemonicParsing="false" onAction="#produit" prefHeight="42.0" prefWidth="158.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Produits" />
 
     </children>
 </AnchorPane>

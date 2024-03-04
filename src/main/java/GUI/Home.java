@@ -16,13 +16,12 @@ import javafx.stage.Stage;
 public class Home {
     @FXML
     private Button SU_Animal;
-
+    private int userId;
     @FXML
     private ResourceBundle resources;
 
     @FXML
     private URL location;
-    private int userId;
 
     @FXML
     void initialize() {
@@ -106,5 +105,21 @@ public class Home {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void produit(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherProduitUser.fxml"));
+            Parent profileRoot = loader.load();
+            AfficherProduitUser shoppingPageController = loader.getController();
+            shoppingPageController.setUserId(userId);
+            Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            primaryStage.setScene(new Scene(profileRoot));
+            primaryStage.setTitle("Home");
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }
