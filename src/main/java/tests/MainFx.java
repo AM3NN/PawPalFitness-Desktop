@@ -1,6 +1,7 @@
 package tests;
 
 import controllers.AfficherSallesAdmin;
+import controllers.AfficherSallesUser;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -61,6 +62,26 @@ public class MainFX extends Application {
         }
 
     }
+
+
+    // AfficherSallesAdmin
+   /* public void start(Stage primaryStage) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherSallesUser.fxml"));
+        try {
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+
+            // Obtenir le contrôleur AfficherSallesUser
+            AfficherSallesUser controller = loader.getController();
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }*/
 
 
 

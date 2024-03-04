@@ -8,10 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import models.Salle_de_sport;
@@ -43,7 +40,8 @@ public class AfficherSallesAdmin {
     private TableColumn<Salle_de_sport, String> imageCol;  */
     /* @FXML
     private TableColumn<Salle_de_sport, String> descriptionCol;  */
-
+    @FXML
+    private ComboBox<Salle_de_sport.EnumRegion> regionComboBox;
 
     private final SalleService salleService = new SalleService();
 
@@ -57,6 +55,9 @@ public class AfficherSallesAdmin {
         adresseCol.setCellValueFactory(new PropertyValueFactory<>("adresse_salle"));
         // Charger les données des salles dans la TableView
         recupererSalles();
+//filtres
+        regionComboBox.setItems(FXCollections.observableArrayList(Salle_de_sport.EnumRegion.values()));
+
     }
 
     private void recupererSalles() {
@@ -154,6 +155,20 @@ public class AfficherSallesAdmin {
         }
     }
 
+    public void Map(javafx.event.ActionEvent event) {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/MapSalle.fxml"));
+            Parent MapSallesRoot = loader.load();
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            primaryStage.setScene(new Scene(MapSallesRoot));
+            primaryStage.setTitle("Map");
+            primaryStage.show();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     private void afficherDetails(ActionEvent event) throws IOException {
         // Récupérer la salle sélectionnée dans la TableView
@@ -186,4 +201,36 @@ public class AfficherSallesAdmin {
             alert.showAndWait();
         }
     }
+
+
+
+    //filtrer
+    /*
+    @FXML
+    private void filtrerParRegion(ActionEvent event) {
+        // Récupérez la région sélectionnée dans le ComboBox
+        Salle_de_sport.EnumRegion regionSelectionnee = regionComboBox.getValue();
+
+        // Vérifiez si une région a été sélectionnée
+        if (regionSelectionnee != null) {
+            try {
+                // Utilisez la région sélectionnée pour filtrer la liste des salles
+                List<Salle_de_sport> sallesFiltrees = salleService.recuperer_salles_par_region(regionSelectionnee);
+
+                // Effacez la TableView et ajoutez les salles filtrées
+                tableView.getItems().clear();
+                tableView.getItems().addAll(sallesFiltrees);
+            } catch (SQLException e) {
+                e.printStackTrace();
+                // Gérez les erreurs de récupération des données
+            }
+        } else {
+            // Affichez un message si aucune région n'a été sélectionnée
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez sélectionner une région.");
+            alert.showAndWait();
+        }
+    }*/
 }
