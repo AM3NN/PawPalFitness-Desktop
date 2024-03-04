@@ -12,8 +12,6 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<?import models.Salle_de_sport?>
-<?import javafx.util.Callback?>
 <AnchorPane prefHeight="380.0" prefWidth="530.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AfficherSallesAdmin">
     <Label layoutX="343.0" layoutY="57.0" prefHeight="60.0" prefWidth="298.0" style="-fx-font-size: 20pt;" text="Liste des salles de sport" />
 
@@ -40,12 +38,12 @@
                     <PropertyValueFactory property="region_salle" />
                 </cellValueFactory>
             </TableColumn>
-<!--
-            <TableColumn fx:id="imageCol" prefWidth="70.0" text="Image">
-                <cellValueFactory>
-                    <PropertyValueFactory property="image_salle" />
-                </cellValueFactory>
-            </TableColumn>-->
+            <!--
+                        <TableColumn fx:id="imageCol" prefWidth="70.0" text="Image">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="image_salle" />
+                            </cellValueFactory>
+                        </TableColumn>-->
             <TableColumn fx:id="adresseCol" prefWidth="235.0" text="Adresse">
                 <cellValueFactory>
                     <PropertyValueFactory property="adresse_salle" />
@@ -55,6 +53,7 @@
 
         </columns>
     </TableView>
+
 
 
     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#011936" height="550.0" layoutX="-1.0" stroke="TRANSPARENT" strokeType="INSIDE" width="174.0" />
@@ -110,6 +109,10 @@
         </image>
     </ImageView>
 
+    <Button layoutX="233.0" layoutY="491.0" onAction="#ajouterNouvelleSalle" text="Ajouter une nouvelle salle" />
+    <Button layoutX="631.0" layoutY="491.0" onAction="#afficherDetails" text="Afficher les détails" />
+    <Button layoutX="479.0" layoutY="491.0" onAction="#SupprimerSalle" text="Supprimer" />
+    <Button layoutX="398.0" layoutY="491.0" onAction="#ModifierSalle" text="Modifier" />
 
 
 </AnchorPane>

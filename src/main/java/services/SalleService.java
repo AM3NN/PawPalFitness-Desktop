@@ -10,6 +10,7 @@ import java.util.List;
 public class SalleService implements IService<Salle_de_sport>{
 
 
+    public static Salle_de_sport getSalleParID;
     private Connection connection;
 
     public SalleService(){

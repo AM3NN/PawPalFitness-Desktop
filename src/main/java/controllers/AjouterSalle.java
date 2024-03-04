@@ -1,4 +1,8 @@
 package controllers;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.event.ActionEvent;
@@ -6,16 +10,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import models.Salle_de_sport;
 import services.SalleService;
 
-import java.awt.*;
 import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Arrays;
 
 public class AjouterSalle {
 
@@ -64,7 +66,6 @@ public class AjouterSalle {
         }
     }
     public static Salle_de_sport.EnumRegion convertToEnumRegion(String regionString) {
-
         return Salle_de_sport.EnumRegion.valueOf(regionString); // Cela suppose que les noms des régions sont exactement les mêmes que les noms des EnumRegion
     }
 
@@ -78,8 +79,6 @@ public class AjouterSalle {
 
             String regionString = regionComboBox.getValue();
             Salle_de_sport.EnumRegion region = Salle_de_sport.convertToEnumRegion(regionString);
-
-
 
             if (regionString == null || regionString.isEmpty()) {
                 throw new IllegalArgumentException("Veuillez sélectionner une région.");
@@ -115,6 +114,20 @@ public class AjouterSalle {
             alert.setHeaderText(null);
             alert.setContentText("Une erreur est survenue lors de l'ajout de la salle. Veuillez réessayer.");
             alert.showAndWait();
+        }
+    }
+
+    public void retourSalle(javafx.event.ActionEvent event) {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherSallesAdmin.fxml"));
+            Parent AjoutSallesRoot = loader.load();
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            primaryStage.setScene(new Scene(AjoutSallesRoot));
+            primaryStage.setTitle("");
+            primaryStage.show();
+        }
+        catch (IOException e){
+            e.printStackTrace();
         }
     }
 }

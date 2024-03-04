@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,35 +10,31 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="550.0" prefWidth="800.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModifierSalle">
+<AnchorPane prefHeight="550.0" prefWidth="800.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AfficherDetailsSalle">
 
 
 
     <children>
-        <VBox layoutX="200.0" layoutY="100.0" spacing="10">
-            <Label style="-fx-font-size: 20pt;" text="Modifier une salle de sport" />
+        <VBox layoutX="200.0" layoutY="100.0" prefHeight="383.0" prefWidth="308.0" spacing="10">
+            <Label style="-fx-font-size: 20pt;" text="Détails de la salle de sport" />
 
-            <Label style="-fx-font-size: 10pt;" text="Nom de la salle" />
-            <TextField fx:id="nomSalleField" promptText="Entrez le nom de la salle" />
+            <Label style="-fx-font-size: 13pt;" text="Nom de la salle:" />
+            <Label fx:id="nomSalleLabel" />
 
-            <Label style="-fx-font-size: 10pt;" text="Description" />
-            <TextField fx:id="descriptionField" promptText="Entrez une description" />
+            <Label style="-fx-font-size: 13pt;" text="Description:" />
+            <Label fx:id="descriptionLabel" />
+
+            <Label style="-fx-font-size: 13pt;" text="Région:" />
+            <Label fx:id="regionLabel" />
 
 
-            <Label style="-fx-font-size: 10pt;" text="Région" />
-            <ComboBox fx:id="regionComboBox" promptText="Choisissez une Région" />
-            <Label style="-fx-font-size: 10pt;" text="Adresse" />
-            <TextField fx:id="adresseField" promptText="Entrez l'adresse" />
+            <Label style="-fx-font-size: 13pt;" text="Adresse:" />
+            <Label fx:id="adresseLabel" />
 
         </VBox>
 
-        <Label layoutX="568.0" layoutY="150.0" style="-fx-font-size: 10pt;" text="Image" />
-        <TextField fx:id="imageField" layoutX="568.0" layoutY="180.0" promptText="Entrez l'URL de l'image" />
-        <Button layoutX="568.0" layoutY="216.0" onAction="#selectImage" text="Sélectionner une image" />
-        <ImageView fx:id="imageView" fitHeight="200" fitWidth="200" layoutX="568.0" layoutY="256.0" />
-
-        <Button fx:id="btnModifier" layoutX="400.0" layoutY="500.0" onAction="#modifierSalle" text="Modifier" />
-        <Button fx:id="btnAnnuler" layoutX="510.0" layoutY="500.0" onAction="#annulerModif" text="Annuler" />
+        <Label layoutX="637.0" layoutY="192.0" style="-fx-font-size: 15pt;" text="Image" />
+        <ImageView fx:id="imageView" fitHeight="200" fitWidth="200" layoutX="566.0" layoutY="238.0" />
 
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#011936" height="550.0" layoutX="-1.0" stroke="TRANSPARENT" strokeType="INSIDE" width="174.0" />
         <Button id="btn_SideBar" fx:id="btn_profile" alignment="CENTER" layoutX="20.0" layoutY="153.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="110.0" styleClass="btn_SideBar" stylesheets="@Style.css" text="Profile" textAlignment="CENTER" />
@@ -94,7 +88,7 @@
                 <Image url="@decon.png" />
             </image>
         </ImageView>
-
+        <Button layoutX="726.0" layoutY="491.0" onAction="#retourSalle" stylesheets="@Style.css" text="Retour" />
 
     </children>
 

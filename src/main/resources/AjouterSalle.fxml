@@ -92,11 +92,8 @@
       <Button layoutX="568.0" layoutY="216.0" onAction="#selectImage" text="Sélectionner une image" />
       <ImageView fx:id="imageView" fitHeight="200" fitWidth="200" layoutX="568.0" layoutY="256.0" />
 
+        <Button layoutX="458.0" layoutY="491.0" onAction="#ajouter_Salle" text="Ajouter" textAlignment="CENTER" />
+        <Button layoutX="726.0" layoutY="491.0" onAction="#retourSalle" stylesheets="@Style.css" text="Retour" />
 
-
-
-
-
-         <Button layoutX="458.0" layoutY="491.0" onAction="#ajouter_Salle" text="Ajouter" textAlignment="CENTER" />
     </children>
 </AnchorPane>
