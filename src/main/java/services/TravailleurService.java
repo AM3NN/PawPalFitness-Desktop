@@ -58,26 +58,31 @@ public class TravailleurService implements IService<Travailleur> {
 
     @Override
     public void modifier(Travailleur travailleur) throws SQLException {
-        // Implement modifier logic
     }
 
     @Override
     public void supprimer(int id) throws SQLException {
-        String travailleurSql = "DELETE travailleur FROM travailleur INNER JOIN personne " +
-                "ON travailleur.personne_id = personne.id " +
-                "WHERE personne.role_id = 3 AND personne.id = ?";
-        String personneSql = "DELETE FROM personne WHERE id = ? AND role_id = 3";
-
-        try (PreparedStatement travailleurStatement = connection.prepareStatement(travailleurSql);
-             PreparedStatement personneStatement = connection.prepareStatement(personneSql)) {
-            travailleurStatement.setInt(1, id);
-            travailleurStatement.executeUpdate();
-
-            // Then, delete the personne record based on id and role_id
-            personneStatement.setInt(1, id);
-            personneStatement.executeUpdate();
+        String retrievePersonneIdSql = "SELECT personne_id FROM travailleur WHERE id = ?";
+        int personneId;
+        try (PreparedStatement retrievePersonneIdStatement = connection.prepareStatement(retrievePersonneIdSql)) {
+            retrievePersonneIdStatement.setInt(1, id);
+            ResultSet resultSet = retrievePersonneIdStatement.executeQuery();
+            if (resultSet.next()) {
+                personneId = resultSet.getInt("personne_id");
+                String travailleurSql = "DELETE FROM travailleur WHERE id = ?";
+                try (PreparedStatement travailleurStatement = connection.prepareStatement(travailleurSql)) {
+                    travailleurStatement.setInt(1, id);
+                    travailleurStatement.executeUpdate();
+                }
+                String personneSql = "DELETE FROM personne WHERE id = ?";
+                try (PreparedStatement personneStatement = connection.prepareStatement(personneSql)) {
+                    personneStatement.setInt(1, personneId);
+                    personneStatement.executeUpdate();
+                }
+            }
         }
     }
+
 
 
     @Override
@@ -98,16 +103,19 @@ public class TravailleurService implements IService<Travailleur> {
                 String email = resultSet.getString("email");
                 String password = resultSet.getString("password");
                 int roleId = resultSet.getInt("role_id");
+                int idT = resultSet.getInt("id"); // Assuming this is the ID from the travailleur table
+                int personneId = resultSet.getInt("personne_id"); // Assuming this is the personne_id from the travailleur table
                 String diplome = resultSet.getString("diplome");
                 String categorie = resultSet.getString("categorie");
                 String langue = resultSet.getString("langue");
                 String experience = resultSet.getString("experience");
-                Travailleur travailleur = new Travailleur(id, age, nom, prenom, region, email, password, roleId, diplome, categorie, langue, experience);
+                Travailleur travailleur = new Travailleur(id, age, nom, prenom, region, email, password, roleId, idT, personneId, diplome, categorie, langue, experience);
                 travailleurs.add(travailleur);
             }
         }
         return travailleurs;
     }
+
 
 
 

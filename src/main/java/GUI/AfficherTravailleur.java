@@ -119,7 +119,6 @@ public class AfficherTravailleur {
             List<Travailleur> travailleurs = travailleurService.recuperer();
             ObservableList<Travailleur> observableTravailleurs = FXCollections.observableArrayList(travailleurs);
             table_id.setItems(observableTravailleurs);
-
             table_id.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
                 if (newValue != null) {
                     nomt_modif.setText(newValue.getNom());
@@ -195,7 +194,7 @@ public class AfficherTravailleur {
     }
 
     private void setCellValueFactories() {
-        id_t.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
+        id_t.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getIdT()).asObject());
         nom_t.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNom()));
         prenom_t.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPrenom()));
         age_t.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getAge()).asObject());
@@ -208,6 +207,7 @@ public class AfficherTravailleur {
         langue_t.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getLangue()));
         experience_t.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getExperience()));
     }
+
 
     public void Home(ActionEvent actionEvent) {
         try {

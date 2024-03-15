@@ -85,6 +85,12 @@
             <Image url="@subscription.png" />
          </image>
       </ImageView>
+      <Button id="btn_SideBar" fx:id="btn_produit1" layoutX="14.0" layoutY="338.0" mnemonicParsing="false" onAction="#Abonnements" prefHeight="42.0" prefWidth="158.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Salles" />
+      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="8.0" layoutY="347.0">
+         <image>
+            <Image url="@subscription.png" />
+         </image>
+      </ImageView>
 
     </children>
 </AnchorPane>

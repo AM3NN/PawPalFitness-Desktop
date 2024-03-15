@@ -1,7 +1,7 @@
 package models;
 
 public class Travailleur extends Personne {
-    private int id;
+    private int idT;
     private int personneId; // New property to hold the ID from the Personne table
     private String diplome;
     private String categorie;
@@ -24,10 +24,9 @@ public class Travailleur extends Personne {
         this.langue = langue;
         this.experience = experience;
     }
-
-    public Travailleur(int id, int age, String nom, String prenom, String region, String email, String password, int roleId, int personneId, String diplome, String categorie, String langue, String experience) {
+    public Travailleur(int id, int age, String nom, String prenom, String region, String email, String password, int roleId, int idT, int personneId, String diplome, String categorie, String langue, String experience) {
         super(id, age, nom, prenom, region, email, password, roleId);
-        this.id = id;
+        this.idT = idT;
         this.personneId = personneId;
         this.diplome = diplome;
         this.categorie = categorie;
@@ -37,12 +36,12 @@ public class Travailleur extends Personne {
     public Travailleur() {
 
     }
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
+
+
+    public int getIdT() {
+        return idT;
+
     }
 
     public int getPersonneId() {
@@ -88,17 +87,12 @@ public class Travailleur extends Personne {
     @Override
     public String toString() {
         return "Travailleur{" +
-                "id=" + id +
-                ", age=" + getAge() +
-                ", nom='" + getNom() + '\'' +
-                ", prenom='" + getPrenom() + '\'' +
-                ", region='" + getRegion() + '\'' +
-                ", email='" + getEmail() + '\'' +
-                ", password='" + getPassword() + '\'' +
+                "idT=" + idT +
+                ", personneId=" + personneId +
                 ", diplome='" + diplome + '\'' +
                 ", categorie='" + categorie + '\'' +
                 ", langue='" + langue + '\'' +
                 ", experience='" + experience + '\'' +
-                '}';
+                "} " + super.toString();
     }
 }

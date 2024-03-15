@@ -16,6 +16,8 @@ import javafx.stage.Stage;
 public class Home {
     @FXML
     private Button SU_Animal;
+    @FXML
+    private Button chatButton;
     private int userId;
     @FXML
     private ResourceBundle resources;
@@ -61,6 +63,7 @@ public class Home {
             e.printStackTrace();
         }
     }
+
     @FXML
     void Home(ActionEvent actionEvent) {
         try {
@@ -77,7 +80,7 @@ public class Home {
         }
     }
 
-    public void TypeAnimal(ActionEvent actionEvent)  {
+    public void TypeAnimal(ActionEvent actionEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/TypeAnimal.fxml"));
             Parent profileRoot = loader.load();
@@ -121,5 +124,19 @@ public class Home {
             e.printStackTrace();
         }
 
+    }
+
+    @FXML
+    void chatbot(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/chatbot.fxml"));
+            Parent signInRoot = loader.load();
+            Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            primaryStage.setScene(new Scene(signInRoot));
+            primaryStage.setTitle("ChatBot");
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

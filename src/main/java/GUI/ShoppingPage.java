@@ -186,16 +186,11 @@ public class ShoppingPage {
 
 
     private void displayCourses(String selectedCategory) {
-        // Clear the courseContainer
         courseContainer.getChildren().clear();
         try {
-            // Get a connection to the database
             Connection conn = MyDabase.getInstance().getConnection();
-            // Create a statement
             Statement stmt = conn.createStatement();
-            // Execute a query to get the courses in the selected category
             ResultSet rs = stmt.executeQuery("SELECT * FROM reservation WHERE category = '" + selectedCategory + "'");
-            // Loop through the result set and create a UI component for each course
             while (rs.next()) {
                 VBox courseBox = new VBox();
                 courseBox.setStyle("-fx-border-color: #ccc; -fx-padding: 10px; -fx-margin: 10px; -fx-background-color: #506e8e;");
