@@ -151,7 +151,7 @@ public class ForgotPassword {
 
     private boolean sendEmail(String recipientEmail, String verificationCode, String nom, String prenom) {
         final String EMAIL_USERNAME = "amenallah.laouini@esprit.tn";
-        final String EMAIL_PASSWORD = "amen$$12345";
+        final String EMAIL_PASSWORD = "amenalahlaouini123";
 
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");

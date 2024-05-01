@@ -223,7 +223,7 @@ public class SignIn {
             return stringBuilder.toString();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
-            return null; // Handle error accordingly
+            return null;
         }
     }
 
