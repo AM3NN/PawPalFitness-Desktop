@@ -1,6 +1,6 @@
-package Services;
-import Models.Animal;
-import Utils.DB;
+package services;
+import models.Animal;
+import utils.MyDabase;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,17 +11,46 @@ public class AnimalService implements IAnimal<Animal>{
     private Connection connection;
 
     public AnimalService(){
-        connection = DB.getInstance().getConnection();
+        connection = MyDabase.getInstance().getConnection();
     }
     @Override
     public void ajouterAnimal(Animal animal) throws SQLException {
-        String req="insert into animal(`Nom`, `Age`, `Categorie`, `Type`, `Details`,`Poids`)"
-                +"values('"+animal.getNom()+"','"+animal.getAge()+"','"
-                +animal.getCategorie()+"','"+animal.getType()+"','"
-                +animal.getDetails()+"','"+animal.getPoids()+"')";
+        String req = "INSERT INTO animal (IDC, IDU, Nom, Age, Type, Details, Poids) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-        Statement statement = connection.createStatement();
-        statement.executeUpdate(req);
+        PreparedStatement statement = connection.prepareStatement(req);
+        statement.setInt(1, animal.getIDC());
+        statement.setInt(2, animal.getIDU());
+        statement.setString(3, animal.getNom());
+        statement.setInt(4, animal.getAge());
+        statement.setString(5, animal.getType());
+        statement.setString(6, animal.getDetails());
+        statement.setFloat(7, animal.getPoids());
+
+        statement.executeUpdate();
+    }
+
+    public int fetchCategoryId(String categoryName) {
+        int categoryId = -1;
+
+        try {
+            // Prepare a statement to query the database
+            String query = "SELECT IDC FROM categorie WHERE nomc = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, categoryName);
+
+            // Execute the query
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Check if the result set has any rows
+            if (resultSet.next()) {
+                // Retrieve the category ID from the result set
+                categoryId = resultSet.getInt("IDC");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Handle the exception properly in your application
+        }
+
+        return categoryId;
     }
 
     @Override
@@ -66,29 +95,61 @@ public class AnimalService implements IAnimal<Animal>{
 
     @Override
     public List<Animal> animalparCategorie() throws SQLException {
-        String req = "SELECT Nom,Age,Poids FROM animal WHERE Categorie='Chat'";
-        Statement statement = connection.createStatement();
+        // Fetch the category ID for the category name "Chat"
+        int categoryId = fetchCategoryId("Chat");
 
-        ResultSet resultat = statement.executeQuery(req);
+        // Check if the category ID is valid
+        if (categoryId == -1) {
+            // Handle the case where the category does not exist
+            System.out.println("Category not found: Chat");
+            return new ArrayList<>(); // Return an empty list
+        }
+
+        // Prepare the SQL query to select animals with the category ID for "Chat"
+        String req = "SELECT Nom,Age,Poids FROM animal WHERE IDC = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(req);
+        preparedStatement.setInt(1, categoryId);
+
+        // Execute the query
+        ResultSet resultat = preparedStatement.executeQuery();
+
+        // Process the results and create Animal objects
         List<Animal> list = new ArrayList<>();
-        while (resultat.next()){
+        while (resultat.next()) {
             Animal a = new Animal();
             a.setNom(resultat.getString("Nom"));
             a.setAge(resultat.getInt("Age"));
             a.setPoids(resultat.getFloat("Poids"));
             list.add(a);
         }
+
         return list;
     }
 
+
     @Override
     public List<Animal> animalparCategorie2() throws SQLException {
-        String req = "SELECT Nom,Age,Details,Poids FROM animal WHERE Categorie='Chien'";
-        Statement statement = connection.createStatement();
+        // Fetch the category ID for the category name "Chien"
+        int categoryId = fetchCategoryId("Chien");
 
-        ResultSet resultat = statement.executeQuery(req);
+        // Check if the category ID is valid
+        if (categoryId == -1) {
+            // Handle the case where the category does not exist
+            System.out.println("Category not found: Chien");
+            return new ArrayList<>(); // Return an empty list
+        }
+
+        // Prepare the SQL query to select animals with the category ID for "Chien"
+        String req = "SELECT Nom,Age,Details,Poids FROM animal WHERE IDC = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(req);
+        preparedStatement.setInt(1, categoryId);
+
+        // Execute the query
+        ResultSet resultat = preparedStatement.executeQuery();
+
+        // Process the results and create Animal objects
         List<Animal> list = new ArrayList<>();
-        while (resultat.next()){
+        while (resultat.next()) {
             Animal a = new Animal();
             a.setNom(resultat.getString("Nom"));
             a.setAge(resultat.getInt("Age"));
@@ -96,10 +157,12 @@ public class AnimalService implements IAnimal<Animal>{
             a.setPoids(resultat.getFloat("Poids"));
             list.add(a);
         }
+
         return list;
     }
 
-        @Override
+
+    @Override
         public List<Animal> animalParNom(String n) throws SQLException {
             String req = "SELECT Age,Details,Poids FROM animal WHERE nom=?";
             PreparedStatement statement = connection.prepareStatement(req);
@@ -124,9 +187,9 @@ public class AnimalService implements IAnimal<Animal>{
         statement.setString(1,"_%");
 
         ResultSet resultat = statement.executeQuery();
-        List<Models.Animal> list = new ArrayList<>();
+        List<models.Animal> list = new ArrayList<>();
         while (resultat.next()){
-            Models.Animal a = new Models.Animal();
+            models.Animal a = new models.Animal();
             a.setNom(resultat.getString("Nom"));
             a.setAge(resultat.getInt("Age"));
             a.setDetails(resultat.getString("Details"));

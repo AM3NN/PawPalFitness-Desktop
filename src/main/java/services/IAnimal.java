@@ -1,8 +1,8 @@
-package Services;
+package services;
 
 import java.sql.SQLException;
 import java.util.List;
-import Models.Animal;
+import models.Animal;
 
 public interface IAnimal <T>{
     void ajouterAnimal(T t) throws SQLException;

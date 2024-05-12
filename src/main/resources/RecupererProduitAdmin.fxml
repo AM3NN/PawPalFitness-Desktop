@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RecupererProduitAdmin">
+
+    <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#011936" height="554.0" stroke="TRANSPARENT" strokeType="INSIDE" width="171.0" />
+        <HBox alignment="CENTER_LEFT" spacing="10" AnchorPane.leftAnchor="180" AnchorPane.topAnchor="80">
+            <VBox fx:id="categoryContainer" style="-fx-margin-left: 20;" />
+        </HBox>
+
+        <ScrollPane layoutX="336.0" layoutY="48.0" prefHeight="332.0" prefWidth="254.0" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="336.0" AnchorPane.rightAnchor="10" AnchorPane.topAnchor="48.0">
+            <VBox fx:id="productContainer" alignment="CENTER" spacing="20" />
+        </ScrollPane>
+         <Label layoutX="172.0" layoutY="54.0" style="-fx-font-weight: bold;" text="FILTRER PAR CATEGORIE" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#011a36" height="47.0" layoutX="169.0" layoutY="-4.0" stroke="TRANSPARENT" strokeType="INSIDE" width="631.0" />
+      <ImageView fitHeight="34.0" fitWidth="39.0" layoutX="10.0" layoutY="17.0">
+         <image>
+            <Image url="@moree.png" />
+         </image>
+      </ImageView>
+      <Circle fill="#1f93ff00" layoutX="750.0" layoutY="18.0" radius="9.0" stroke="#2489ad" strokeType="INSIDE" strokeWidth="2.0" />
+      <ImageView fitHeight="19.0" fitWidth="18.0" layoutX="765.0" layoutY="12.0">
+         <image>
+            <Image url="@decon.png" />
+         </image>
+      </ImageView>
+      <Hyperlink fx:id="btn_home" layoutX="194.0" layoutY="10.0" text="Home" />
+      <Button id="btn_NavBar" layoutX="38.0" layoutY="514.0" mnemonicParsing="false" onAction="#Logout" prefHeight="30.0" prefWidth="146.0" styleClass="btn_NavBar" stylesheets="@styles.css" text="Quitter" />
+      <Button fx:id="btn_users" alignment="CENTER" layoutX="31.0" layoutY="163.0" mnemonicParsing="false" onAction="#CheckUsers" prefHeight="42.0" prefWidth="110.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Users" textAlignment="CENTER" />
+      <Button id="btn_SideBar" fx:id="btn_workers" layoutX="29.0" layoutY="210.0" mnemonicParsing="false" onAction="#CheckWorkers" prefHeight="41.0" prefWidth="121.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Workers" />
+      <Button id="btn_SideBar" fx:id="btn_reservations" layoutX="21.0" layoutY="252.0" mnemonicParsing="false" onAction="#reservation" prefHeight="42.0" prefWidth="158.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Reservations" />
+      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="24.0" layoutY="172.0">
+         <image>
+            <Image url="@profile.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="22.0" layoutY="219.0">
+         <image>
+            <Image url="@task.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="15.0" layoutY="261.0">
+         <image>
+            <Image url="@subscription.png" />
+         </image>
+      </ImageView>
+      <Button id="btn_SideBar" fx:id="btn_produit" layoutX="24.0" layoutY="294.0" mnemonicParsing="false" onAction="#produit" prefHeight="42.0" prefWidth="158.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Produits" />
+      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="18.0" layoutY="303.0">
+         <image>
+            <Image url="@subscription.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="193.0" layoutY="501.0" mnemonicParsing="false" text="Ajouter Produit"  stylesheets="@styles.css" styleClass="button-design" onAction="#addProduit"/>
+    </children>
+</AnchorPane>

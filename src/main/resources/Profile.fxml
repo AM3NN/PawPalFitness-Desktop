@@ -20,9 +20,11 @@
             <font>
                 <Font size="6.0" />
             </font></Button>
-        <Button id="btn_SideBar" layoutX="21.0" layoutY="202.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="121.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Planning" />
-        <Button id="btn_SideBar" layoutX="17.0" layoutY="304.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="168.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Mes Produits" />
-        <Button id="btn_SideBar" fx:id="SU_Animal" layoutX="14.0" layoutY="253.0" mnemonicParsing="false" onAction="#Home" prefHeight="43.0" prefWidth="174.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Mes Animaux" />
+        <Button id="btn_SideBar" layoutX="21.0" layoutY="202.0" mnemonicParsing="false" onAction="#Planning" prefHeight="41.0" prefWidth="121.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Planning" />
+        <Button id="btn_SideBar" layoutX="17.0" layoutY="304.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="168.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Mes Produits" onAction="#Produit"/>
+        <Button fx:id="chatButton" layoutX="685.0" layoutY="491.0" onAction="#chatWithGPT" text="Chat with GPT" />
+
+        <Button id="btn_SideBar" fx:id="SU_Animal" layoutX="14.0" layoutY="253.0" mnemonicParsing="false" onAction="#TypeAnimal" prefHeight="43.0" prefWidth="174.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Mes Animaux" />
         <ImageView fitHeight="34.0" fitWidth="39.0" layoutX="14.0" layoutY="22.0">
             <image>
                 <Image url="@moree.png" />
@@ -77,8 +79,8 @@
         <TextField fx:id="prenom_mod" layoutX="523.0" layoutY="134.0" prefHeight="28.0" prefWidth="220.0" promptText="Prenom ..." styleClass="textfield-design" stylesheets="@styles.css" />
         <TextField fx:id="age_mod" layoutX="230.0" layoutY="221.0" prefHeight="28.0" prefWidth="220.0" promptText="Age ..." styleClass="textfield-design" stylesheets="@styles.css" />
         <TextField fx:id="region_mod" layoutX="523.0" layoutY="221.0" prefHeight="28.0" prefWidth="220.0" promptText="Region ..." styleClass="textfield-design" stylesheets="@styles.css" />
-        <TextField fx:id="email_mod" layoutX="230.0" layoutY="312.0" prefHeight="28.0" prefWidth="220.0" promptText="Email ..." styleClass="textfield-design" stylesheets="@styles.css" editable="false" />
-        <PasswordField fx:id="password_mod" layoutX="523.0" layoutY="312.0" prefHeight="28.0" prefWidth="220.0" promptText="Password ..." styleClass="textfield-design" stylesheets="@styles.css" > </PasswordField>
+        <TextField fx:id="email_mod" editable="false" layoutX="230.0" layoutY="312.0" prefHeight="28.0" prefWidth="220.0" promptText="Email ..." styleClass="textfield-design" stylesheets="@styles.css" />
+        <PasswordField fx:id="password_mod" layoutX="523.0" layoutY="312.0" prefHeight="28.0" prefWidth="220.0" promptText="Password ..." styleClass="textfield-design" stylesheets="@styles.css"> </PasswordField>
         <Button fx:id="btn_id" layoutX="453.0" layoutY="377.0" mnemonicParsing="false" onAction="#modifierPerson" prefHeight="40.0" prefWidth="70.0" styleClass="button-design" stylesheets="@styles.css" text="update" textFill="WHITE" />
 
         <Button id="btn_NavBar" layoutX="28.0" layoutY="504.0" mnemonicParsing="false" onAction="#Logout" prefHeight="30.0" prefWidth="146.0" styleClass="btn_NavBar" stylesheets="@styles.css" text="Quitter" />

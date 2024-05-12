@@ -1,14 +1,7 @@
 package GUI;
+import io.github.palexdev.materialfx.controls.MFXTextField;
+import javafx.scene.text.Text;
 
-import java.io.IOException;
-import java.net.URL;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,17 +14,38 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import netscape.javascript.JSObject;
 import utils.MyDabase;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Random;
+
 public class SignIn {
-
+    public Pane captchaLabel1;
+    public MFXTextField inputField;
     @FXML
-    private ResourceBundle resources;
-
+    private WebView recaptchaWebView;
     @FXML
-    private URL location;
+    private Pane captchaLabel;
+    @FXML
+    private WebEngine recaptchaWebEngine;
 
     @FXML
     private Hyperlink ForgotPwdLabel;
@@ -44,13 +58,22 @@ public class SignIn {
 
     @FXML
     private Button login_btn;
+    private String captchaValue;
 
     @FXML
     private PasswordField password_signin;
 
     @FXML
-    void SignUp(ActionEvent event) {
+    void initialize() {
+        Font customFont = Font.loadFont(getClass().getResourceAsStream("/gothicb.ttf"), 72);
+        Font customFont2 = Font.loadFont(getClass().getResourceAsStream("/gothicb.ttf"), 18);
+        generateCaptcha();
+        setCaptcha();
 
+    }
+
+    @FXML
+    void SignUp(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/SignUp.fxml"));
             Parent signInRoot = loader.load();
@@ -62,7 +85,6 @@ public class SignIn {
             e.printStackTrace();
         }
     }
-
 
     public void textfieldDesign() {
         if (this.email_signin.isFocused()) {
@@ -76,6 +98,16 @@ public class SignIn {
 
     @FXML
     void forgotPassword(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ForgotPassword.fxml"));
+            Parent signInRoot = loader.load();
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            primaryStage.setScene(new Scene(signInRoot));
+            primaryStage.setTitle("SignUp");
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -86,6 +118,12 @@ public class SignIn {
             showAlert("Please enter both email and password.");
             return;
         }
+        String enteredCaptcha = inputField.getText(); // Get the entered captcha
+
+        if (!enteredCaptcha.equals(captchaValue)) {
+            showAlert("Invalid captcha. Please try again.");
+            return;
+        }
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -93,7 +131,7 @@ public class SignIn {
 
         try {
             connection = MyDabase.getInstance().getConnection();
-            preparedStatement = connection.prepareStatement("SELECT id, password FROM personne WHERE email = ?");
+            preparedStatement = connection.prepareStatement("SELECT id, password, role_id FROM personne WHERE email = ?");
             preparedStatement.setString(1, email);
             resultSet = preparedStatement.executeQuery();
             if (email.equals("amenallah.laouini@esprit.tn") && password.equals("1234")) {
@@ -106,21 +144,30 @@ public class SignIn {
                 showAlert("Welcome Admin!");
             } else if (resultSet.next()) {
                 int userId = resultSet.getInt("id"); // Retrieve the user ID
+                int roleId = resultSet.getInt("role_id"); // Retrieve the role ID
                 String hashedPasswordFromDB = resultSet.getString("password");
                 String hashedPassword = hashPassword(password);
                 if (hashedPassword.equals(hashedPasswordFromDB)) {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/Home.fxml"));
+                    String homeFXML = "/Home.fxml";
+                    if (roleId == 3) { // If role_id is 3 (travailleur), redirect to HomeT.fxml
+                        homeFXML = "/HomeT.fxml";
+                    }
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource(homeFXML));
                     Parent homeRoot = loader.load();
                     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     primaryStage.setScene(new Scene(homeRoot, 800, 550));
                     primaryStage.setTitle("Home");
 
-                    // Pass the user ID to the controller of the next scene
-                    Home homeController = loader.getController();
-                    homeController.setUserId(userId);
+                    // Get the controller based on the loaded FXML
+                    if (roleId == 3) {
+                        HomeT homeController = loader.getController();
+                        homeController.setUserId(userId);
+                    } else {
+                        Home homeController = loader.getController();
+                        homeController.setUserId(userId);
+                    }
 
                     primaryStage.show();
-
                     showAlert("Login successful!");
                 } else {
                     showAlert("Invalid email or password. Please try again.");
@@ -146,6 +193,10 @@ public class SignIn {
     }
 
 
+
+
+
+
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Login");
@@ -159,10 +210,6 @@ public class SignIn {
         // Implement textfieldDesign for mouse event if needed
     }
 
-    @FXML
-    void initialize() {
-        // Initialization logic if needed
-    }
     private String hashPassword(String password) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
@@ -176,7 +223,56 @@ public class SignIn {
             return stringBuilder.toString();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
-            return null; // Handle error accordingly
+            return null;
         }
     }
+
+    private void generateCaptcha() {
+        StringBuilder valueBuilder = new StringBuilder();
+        Random random = new Random();
+
+        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+        for (int i = 0; i < 6; i++) {
+            char charValue = characters.charAt(random.nextInt(characters.length()));
+            valueBuilder.append(charValue).append(" ");
+        }
+
+        captchaValue = valueBuilder.toString().trim();
+    }
+
+    private void setCaptcha() {
+        captchaLabel.getChildren().clear();
+
+        double xPos = 0;
+
+        String[] fonts = {"cursive", "sans-serif", "serif", "monospace"};
+
+        for (char charValue : captchaValue.toCharArray()) {
+            Text text = new Text(String.valueOf(charValue));
+            int rotate = -20 + new Random().nextInt(30);
+            int padding = new Random().nextInt(10) + 5;
+
+            String randomColor = String.format("#%06X", new Random().nextInt(0xFFFFFF));
+
+            // Randomly select a font from the 'fonts' array
+            String randomFont = fonts[new Random().nextInt(fonts.length)];
+
+            text.setStyle("-fx-rotate: " + rotate + "; -fx-font-family: '" + randomFont + "'; -fx-font-size: 26; -fx-fill: " + randomColor + ";");
+
+            text.setTranslateX(xPos);
+            text.setTranslateY(0);
+
+            captchaLabel.getChildren().add(text);
+
+            xPos += text.getBoundsInLocal().getWidth() + padding;
+        }
+    }
+
+    @FXML
+    public void refreshCaptcha() {
+        generateCaptcha();
+        setCaptcha();
+    }
+
 }

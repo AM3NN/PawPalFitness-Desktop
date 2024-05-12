@@ -9,7 +9,8 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.FavorisAnimal">
+
+<AnchorPane prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FavorisAnimal">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#011936" height="550.0" stroke="TRANSPARENT" strokeType="INSIDE" width="174.0" />
       <Button id="btn_SideBar" fx:id="btn_profile" alignment="CENTER" layoutX="21.0" layoutY="153.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="110.0" styleClass="btn_SideBar" stylesheets="@Style.css" text="Profile" textAlignment="CENTER" />
@@ -73,6 +74,6 @@
          </image>
       </ImageView>
       <Circle fill="#1f93ff00" layoutX="744.0" layoutY="22.0" radius="12.0" stroke="#2489ad" strokeType="INSIDE" strokeWidth="2.0" />
-      <VBox fx:id="Item" layoutX="189.0" layoutY="67.0" prefHeight="474.0" prefWidth="594.0" />
+      <VBox fx:id="Item" layoutX="189.0" layoutY="67.0" prefHeight="474.0" prefWidth="600.0" />
    </children>
 </AnchorPane>

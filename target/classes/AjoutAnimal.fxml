@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AjoutAnimal">
+<AnchorPane prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AjoutAnimal">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#011936" height="550.0" stroke="TRANSPARENT" strokeType="INSIDE" width="174.0" />
       <Button id="btn_SideBar" fx:id="btn_profile" alignment="CENTER" layoutX="21.0" layoutY="153.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="110.0" styleClass="btn_SideBar" stylesheets="@Style.css" text="Profile" textAlignment="CENTER" />

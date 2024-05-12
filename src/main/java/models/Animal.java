@@ -1,18 +1,32 @@
-package Models;
+package models;
 
 public class Animal {
     int IDA;
+    int IDC;
+    int IDU;
     int Age;
-    String Nom,Categorie,Type,Details;
+    String Nom,Type,Details;
     float Poids;
 
     public Animal(){}
 
-    public Animal(int IDA, int age, String nom, String categorie,String type, String details, float poids) {
+    public Animal(int IDA,int IDC,int IDU, int age, String nom,String type, String details, float poids) {
         this.IDA = IDA;
+        this.IDC = IDC;
+        this.IDU = IDU;
         Age = age;
         Nom = nom;
-        Categorie = categorie;
+        this.Type = type;
+        Details = details;
+        Poids = poids;
+    }
+
+    //Constructeur sans IDA(ID auto increment)
+    public Animal(int IDC,int IDU, int age, String nom,String type, String details, float poids) {
+        this.IDC = IDC;
+        this.IDU = IDU;
+        Age = age;
+        Nom = nom;
         this.Type = type;
         Details = details;
         Poids = poids;
@@ -20,10 +34,9 @@ public class Animal {
 
     //Constructeur sans IDA(ID auto increment)
 
-    public Animal(String nom,int age, String categorie, String type, String details,float poids) {
+    public Animal(String nom,int age, String type, String details,float poids) {
         Nom = nom;
         Age=age;
-        Categorie = categorie;
         Type= type;
         Details = details;
         Poids = poids;
@@ -48,12 +61,16 @@ public class Animal {
         return IDA;
     }
 
-    public String getNom() {
-        return Nom;
+    public int getIDC() {
+        return IDC;
     }
 
-    public String getCategorie() {
-        return Categorie;
+    public int getIDU() {
+        return IDU;
+    }
+
+    public String getNom() {
+        return Nom;
     }
 
     public float getPoids() {
@@ -69,13 +86,8 @@ public class Animal {
     }
 
     //SETTERS
-
     public void setNom(String nom) {
         Nom = nom;
-    }
-
-    public void setCategorie(String categorie) {
-        Categorie = categorie;
     }
 
     public void setPoids(float poids) {
@@ -98,9 +110,10 @@ public class Animal {
     public String toString() {
         return "Animal{" +
                 "IDA=" + IDA +
+                "IDC=" + IDC +
+                "IDU=" + IDU +
                 ", Age=" + Age +
                 ", Nom='" + Nom + '\'' +
-                ", Categorie='" + Categorie + '\'' +
                 ", Type='" + Type + '\'' +
                 ", Details='" + Details + '\'' +
                 ", Poids=" + Poids +

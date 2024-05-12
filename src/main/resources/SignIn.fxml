@@ -11,41 +11,65 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
+
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.layout.Pane?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SignIn">
     <stylesheets>
         <URL value="@styles.css" />
     </stylesheets>
-   <children>
-      <AnchorPane prefHeight="550.0" prefWidth="420.0" styleClass="login-bg" stylesheets="@styles.css">
-         <children>
-            <ImageView fitHeight="232.0" fitWidth="252.0" layoutX="94.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@logo.png" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
-      <TextField fx:id="email_signin" layoutX="498.0" layoutY="240.0" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="28.0" prefWidth="220.0" promptText="Email ..." styleClass="textfield-design" stylesheets="@styles.css">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </TextField>
-      <PasswordField fx:id="password_signin" layoutX="498.0" layoutY="306.0" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="28.0" prefWidth="220.0" promptText="Password ..." styleClass="textfield-design" stylesheets="@styles.css">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </PasswordField>
-      <Button fx:id="login_btn" layoutX="572.0" layoutY="372.0" mnemonicParsing="false" onAction="#login" prefHeight="40.0" prefWidth="70.0" styleClass="button-design" stylesheets="@styles.css" text="Login" textFill="WHITE">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
-      <Label layoutX="532.0" layoutY="144.0" text="Sign In">
-         <font>
-            <Font name="Baskerville Old Face" size="50.0" />
-         </font>
-      </Label>
-      <Hyperlink fx:id="ForgotPwdLabel" layoutX="557.0" layoutY="431.0" onAction="#forgotPassword" text="Forgot password?" />
-      <Hyperlink fx:id="SignUp" layoutX="578.0" layoutY="455.0" onAction="#SignUp" text="SignUp?" />
-   </children>
+    <children>
+        <AnchorPane prefHeight="550.0" prefWidth="420.0" styleClass="login-bg" stylesheets="@styles.css">
+            <children>
+                <ImageView fitHeight="232.0" fitWidth="252.0" layoutX="94.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@logo.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+        <TextField fx:id="email_signin" layoutX="498.0" layoutY="240.0" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="28.0" prefWidth="220.0" promptText="Email ..." styleClass="textfield-design" stylesheets="@styles.css">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </TextField>
+        <PasswordField fx:id="password_signin" layoutX="498.0" layoutY="306.0" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="28.0" prefWidth="220.0" promptText="Password ..." styleClass="textfield-design" stylesheets="@styles.css">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </PasswordField>
+        <Pane fx:id="captchaLabel1" disable="true" layoutX="498.0" layoutY="360.0" maxHeight="-Infinity"
+              maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="47.0" prefWidth="228.0"
+              style="-fx-background-color: #f0f0f0; -fx-border-color: #ccc;">
+            <Pane fx:id="captchaLabel" layoutX="20.0" layoutY="33.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                  minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="228.0"/>
+        </Pane>
+        <MFXTextField fx:id="inputField" floatingText="Captcha" layoutX="498.0" layoutY="400.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="244.0" stylesheets="@styles.css">
+            <font>
+                <Font name="Century Gothic Bold" size="14.0" />
+            </font>
+            <textFill>
+                <Color red="0.250980406999588" green="0.1882352977991104" blue="0.3764705955982208" />
+            </textFill>
+        </MFXTextField>
+        <MFXButton layoutX="720.0" layoutY="360.0" onAction="#refreshCaptcha" prefHeight="47.0" prefWidth="69.0" rippleColor="WHITE" style="-fx-background-color: #403060; -fx-text-fill: #FFFFFF;" stylesheets="@styles.css" text="Refrech" textFill="WHITE">
+        </MFXButton>
+
+        <Button fx:id="login_btn" layoutX="572.0" layoutY="450.0" mnemonicParsing="false" onAction="#login" prefHeight="40.0" prefWidth="70.0" styleClass="button-design" stylesheets="@styles.css" text="Login" textFill="WHITE">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Button>
+        <Label layoutX="532.0" layoutY="144.0" text="Sign In">
+            <font>
+                <Font name="Baskerville Old Face" size="50.0" />
+            </font>
+        </Label>
+
+        <Hyperlink fx:id="ForgotPwdLabel" layoutX="557.0" layoutY="490.0" onAction="#forgotPassword" text="Forgot password?" />
+        <Hyperlink fx:id="SignUp" layoutX="578.0" layoutY="510.0" onAction="#SignUp" text="SignUp?" />
+    </children>
+
 </AnchorPane>

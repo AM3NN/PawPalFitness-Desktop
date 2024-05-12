@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+
+<!-- Ajout de l'import pour ImageView -->
+
+<AnchorPane prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AjouterProduit">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#011936" height="561.0" layoutY="-4.0" stroke="TRANSPARENT" strokeType="INSIDE" width="169.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#011a36" height="56.0" layoutX="169.0" stroke="TRANSPARENT" strokeType="INSIDE" width="631.0" />
+      <Label layoutX="214.0" layoutY="196.0" text="Nom du Produit" />
+
+      <Label layoutX="218.0" layoutY="263.0" text="Description" />
+      <Label layoutX="218.0" layoutY="113.0" text="Refèrence" />
+      <Label layoutX="479.0" layoutY="113.0" text="Prix" />
+      <Label layoutX="473.0" layoutY="272.0" text="Image" />
+      <Label layoutX="479.0" layoutY="196.0" text="Catégorie" />
+      <TextField fx:id="Ref" layoutX="214.0" layoutY="132.0" />
+      <TextField fx:id="nomP" layoutX="214.0" layoutY="217.0" />
+      <TextField fx:id="descrip" layoutX="214.0" layoutY="280.0" prefHeight="105.0" prefWidth="160.0" />
+      <TextField fx:id="prix" layoutX="479.0" layoutY="132.0" />
+      <ComboBox fx:id="categ" layoutX="479.0" layoutY="217.0" />
+      <Button fx:id="ajouterProduitButton" layoutX="589.0" layoutY="470.0" mnemonicParsing="false" text="Ajouter Produit" />
+      <Button fx:id="uploadImg" layoutX="548.0" layoutY="268.0" mnemonicParsing="false" text="Upload" />
+      <ImageView fx:id="imageView" fitHeight="150" fitWidth="150" layoutX="479.0" layoutY="302.0" />
+      <ImageView fitHeight="34.0" fitWidth="39.0" layoutX="20.0" layoutY="27.0">
+         <image>
+            <Image url="@moree.png" />
+         </image>
+      </ImageView>
+      <Button id="btn_NavBar" layoutX="48.0" layoutY="524.0" mnemonicParsing="false" onAction="#Logout" prefHeight="30.0" prefWidth="146.0" styleClass="btn_NavBar" stylesheets="@styles.css" text="Quitter" />
+      <Button fx:id="btn_users" alignment="CENTER" layoutX="41.0" layoutY="173.0" mnemonicParsing="false" onAction="#CheckUsers" prefHeight="42.0" prefWidth="110.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Users" textAlignment="CENTER" />
+      <Button id="btn_SideBar" fx:id="btn_workers" layoutX="39.0" layoutY="220.0" mnemonicParsing="false" onAction="#CheckWorkers" prefHeight="41.0" prefWidth="121.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Workers" />
+      <Button id="btn_SideBar" fx:id="btn_reservations" layoutX="31.0" layoutY="262.0" mnemonicParsing="false" onAction="#reservation" prefHeight="42.0" prefWidth="158.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Reservations" />
+      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="34.0" layoutY="182.0">
+         <image>
+            <Image url="@profile.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="32.0" layoutY="229.0">
+         <image>
+            <Image url="@task.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="25.0" layoutY="271.0">
+         <image>
+            <Image url="@subscription.png" />
+         </image>
+      </ImageView>
+      <Button id="btn_SideBar" fx:id="btn_produit" layoutX="34.0" layoutY="304.0" mnemonicParsing="false" onAction="#produit" prefHeight="42.0" prefWidth="158.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Produits" />
+      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="28.0" layoutY="313.0">
+         <image>
+            <Image url="@subscription.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

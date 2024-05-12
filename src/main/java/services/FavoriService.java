@@ -1,8 +1,8 @@
-package Services;
+package services;
 
-import Models.Animal;
-import Models.Favori;
-import Utils.DB;
+import models.Animal;
+import models.Favori;
+import utils.MyDabase;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ public class FavoriService implements IFavori<Favori> {
     Animal a=new Animal();
     Favori f = new Favori();
     public FavoriService(){
-        connection = DB.getInstance().getConnection();
+        connection = MyDabase.getInstance().getConnection();
     }
     @Override
     public void ajouterFAnimal(Favori favori,String n) throws SQLException {
