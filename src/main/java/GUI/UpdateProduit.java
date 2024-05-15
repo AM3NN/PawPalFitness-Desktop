@@ -85,7 +85,8 @@ public class UpdateProduit {
             produit.setDescription(descrip.getText());
             produit.setPrix(Double.parseDouble(prix.getText()));
             produit.setImage(imageUrl);
-            produit.setCategorie(CategorieProduit.valueOf(categ.getValue()));
+            produit.setCategorie(categ.getValue());
+
 
             // Appelle la méthode modifierPrd de ProduitService
             try {

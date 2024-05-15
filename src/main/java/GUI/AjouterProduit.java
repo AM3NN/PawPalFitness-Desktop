@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -107,7 +108,7 @@ public class AjouterProduit {
             nouveauProduit.setDescription(descrip.getText());
             nouveauProduit.setPrix(Double.parseDouble(prix.getText()));
             nouveauProduit.setImage(imageUrl); // Utiliser l'URL de l'image stockée
-            nouveauProduit.setCategorie(convertirCategorie(categ.getValue()));
+            nouveauProduit.setCategorie(categ.getValue());
 
             // Appeler la méthode ajouterPrd de ProduitService
             ProduitService produitService = new ProduitService();
@@ -185,6 +186,30 @@ public class AjouterProduit {
             e.printStackTrace();
         }
     }
+    public void CheckRes(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterReservation.fxml"));
+            Parent signInRoot = loader.load();
+            Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            primaryStage.setScene(new Scene(signInRoot));
+            primaryStage.setTitle("Reservation");
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void checkWorkers(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherTravailleur.fxml"));
+            Parent signInRoot = loader.load();
+            Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            primaryStage.setScene(new Scene(signInRoot));
+            primaryStage.setTitle("Travailleur");
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void produit(ActionEvent actionEvent) {
         try {
@@ -192,10 +217,35 @@ public class AjouterProduit {
             Parent signInRoot = loader.load();
             Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             primaryStage.setScene(new Scene(signInRoot));
-            primaryStage.setTitle("produit");
+            primaryStage.setTitle("Produit");
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+    @FXML
+
+
+
+    public void Abonnements(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherSallesAdmin.fxml"));
+            Parent signInRoot = loader.load();
+            Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            primaryStage.setScene(new Scene(signInRoot));
+            primaryStage.setTitle("Produit");
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void animaux(ActionEvent actionEvent) throws IOException {
+        Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/backanimal.fxml")));
+        Scene scene = new Scene(root,800,550);
+        primaryStage.setScene(scene);
+    }
 }
+
+

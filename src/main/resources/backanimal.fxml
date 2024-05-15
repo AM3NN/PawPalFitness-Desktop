@@ -15,8 +15,8 @@
 <AnchorPane prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.backanimal">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#011936" height="550.0" stroke="TRANSPARENT" strokeType="INSIDE" width="174.0" />
-      <Button fx:id="btn_users" alignment="CENTER" layoutX="21.0" layoutY="153.0" mnemonicParsing="false" onAction="#CheckUsers" prefHeight="42.0" prefWidth="110.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Users" textAlignment="CENTER" />
-      <Button id="btn_SideBar" fx:id="btn_workers" layoutX="19.0" layoutY="200.0" mnemonicParsing="false" onAction="#CheckWorkers" prefHeight="41.0" prefWidth="121.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Workers" />
+      <Button fx:id="btn_users" alignment="CENTER" layoutX="35.0" layoutY="153.0" mnemonicParsing="false" onAction="#CheckUsers" prefHeight="42.0" prefWidth="110.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Users" textAlignment="CENTER" />
+      <Button id="btn_SideBar" fx:id="btn_workers" layoutX="29.0" layoutY="200.0" mnemonicParsing="false" onAction="#CheckWorkers" prefHeight="41.0" prefWidth="121.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Workers" />
       <Button id="btn_SideBar" fx:id="btn_reservations" layoutX="22.0" layoutY="284.0" mnemonicParsing="false" onAction="#reservation" prefHeight="42.0" prefWidth="158.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Reservations" />
       <ImageView fitHeight="34.0" fitWidth="39.0" layoutX="14.0" layoutY="22.0">
          <image>
@@ -28,25 +28,25 @@
             <Image url="@profile.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="12.0" layoutY="209.0">
+      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="17.0" layoutY="209.0">
          <image>
             <Image url="@task.png" />
          </image>
       </ImageView>
       <Button id="btn_NavBar" layoutX="28.0" layoutY="504.0" mnemonicParsing="false" onAction="#Logout" prefHeight="30.0" prefWidth="146.0" styleClass="btn_NavBar" stylesheets="@styles.css" text="Quitter" />
-      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="5.0" layoutY="251.0">
+      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="16.0" layoutY="251.0">
          <image>
             <Image url="@subscription.png" />
          </image>
       </ImageView>
-      <Button id="btn_SideBar" fx:id="btn_produit" layoutX="8.0" layoutY="379.0" mnemonicParsing="false" onAction="#produit" prefHeight="42.0" prefWidth="158.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Produits" />
-      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="8.0" layoutY="293.0">
+      <Button id="btn_SideBar" fx:id="btn_produit" layoutX="11.0" layoutY="379.0" mnemonicParsing="false" onAction="#produit" prefHeight="42.0" prefWidth="158.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Produits" />
+      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="17.0" layoutY="293.0">
          <image>
             <Image url="@subscription.png" />
          </image>
       </ImageView>
       <Button id="btn_SideBar" fx:id="btn_produit1" layoutX="11.0" layoutY="242.0" mnemonicParsing="false" onAction="#Abonnements" prefHeight="42.0" prefWidth="158.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Salles" />
-      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="10.0" layoutY="389.0">
+      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="17.0" layoutY="388.0">
          <image>
             <Image url="@subscription.png" />
          </image>
@@ -56,7 +56,7 @@
             <Image url="@chat.png" />
          </image>
       </ImageView>
-      <Button id="btn_SideBar" fx:id="btn_animaux" layoutX="22.0" layoutY="329.0" mnemonicParsing="false" onAction="#animaux" prefHeight="42.0" prefWidth="158.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Animaux" />
+      <Button id="btn_SideBar" fx:id="btn_animaux" layoutX="11.0" layoutY="329.0" mnemonicParsing="false" onAction="#animaux" prefHeight="42.0" prefWidth="158.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Animaux" />
       <ImageView fitHeight="24.0" fitWidth="18.0" layoutX="25.0" layoutY="338.0">
          <image>
             <Image url="@chien.png" />

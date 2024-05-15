@@ -71,9 +71,8 @@
                 <Image url="@back-button.png" />
             </image>
         </ImageView>
-        <Button id="btn_NavBar" layoutX="28.0" layoutY="504.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="146.0" styleClass="btn_NavBar" stylesheets="@styles.css" text="Quitter" />
         <Hyperlink fx:id="btn_home" layoutX="189.0" layoutY="11.0" text="Home" />
-        <Button id="btn_NavBar" layoutX="28.0" layoutY="504.0" mnemonicParsing="false" onAction="#Logout" prefHeight="30.0" prefWidth="146.0" styleClass="btn_NavBar" stylesheets="@styles.css" text="Quitter" />
+        <Button id="btn_NavBar" layoutX="-16.0" layoutY="504.0" mnemonicParsing="false" onAction="#Logout" prefHeight="30.0" prefWidth="146.0" styleClass="btn_NavBar" stylesheets="@styles.css" text="Quitter" />
       <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="5.0" layoutY="251.0">
          <image>
             <Image url="@subscription.png" />
@@ -85,7 +84,7 @@
             <Image url="@subscription.png" />
          </image>
       </ImageView>
-      <Button id="btn_SideBar" fx:id="btn_produit1" layoutX="11.0" layoutY="242.0" mnemonicParsing="false" onAction="#Abonnements" prefHeight="42.0" prefWidth="158.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Salles" />
+      <Button id="btn_SideBar" fx:id="btn_produit1" layoutY="242.0" mnemonicParsing="false" onAction="#Abonnements" prefHeight="42.0" prefWidth="158.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Salles" />
       <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="10.0" layoutY="389.0">
          <image>
             <Image url="@subscription.png" />
@@ -101,7 +100,7 @@
             <Image url="@chien.png" />
          </image>
       </ImageView>
-      <Button id="btn_SideBar" fx:id="btn_animaux" layoutX="22.0" layoutY="329.0" mnemonicParsing="false" onAction="#animaux" prefHeight="42.0" prefWidth="158.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Animaux" />
+      <Button id="btn_SideBar" fx:id="btn_animaux" layoutX="8.0" layoutY="329.0" mnemonicParsing="false" onAction="#animaux" prefHeight="42.0" prefWidth="158.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Animaux" />
 
     </children>
 </AnchorPane>

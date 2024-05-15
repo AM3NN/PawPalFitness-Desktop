@@ -105,7 +105,20 @@ public class ProfileT {
             // Close resources
         }
     }
-
+    public void Produit(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherProduitUser.fxml"));
+            Parent profileRoot = loader.load();
+            ShoppingPage profileController = loader.getController();
+            profileController.setUserId(userId);
+            Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            primaryStage.setScene(new Scene(profileRoot));
+            primaryStage.setTitle("produit");
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     void CheckProfile(ActionEvent event) {

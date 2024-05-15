@@ -32,7 +32,7 @@ public class SalleService implements IServiceA<Salle_de_sport> {
         }
 
         // Ajouter la salle
-        String req = "INSERT INTO `salle_de_sport` (nom_salle, description_salle, region_salle, image_salle, adresse_salle)" +
+        String req = "INSERT INTO `salle` (nom_salle, description_salle, region_salle, image, adresse_salle)" +
                 " VALUES (?, ?, ?, ?, ?)";
         PreparedStatement preparedStatement = connection.prepareStatement(req);
         preparedStatement.setString(1, salleDeSport.getNom_salle());
@@ -46,7 +46,7 @@ public class SalleService implements IServiceA<Salle_de_sport> {
 
     // Méthode pour vérifier l'existence d'une salle de sport dans la base de données
     private boolean isExistingSalle(String nomSalle) throws SQLException {
-        String req = "SELECT COUNT(*) AS count FROM `salle_de_sport` WHERE `nom_salle`=?";
+        String req = "SELECT COUNT(*) AS count FROM `salle` WHERE `nom_salle`=?";
         PreparedStatement preparedStatement = connection.prepareStatement(req);
         preparedStatement.setString(1, nomSalle);
         ResultSet resultSet = preparedStatement.executeQuery();
@@ -60,7 +60,7 @@ public class SalleService implements IServiceA<Salle_de_sport> {
 
     @Override
     public void modifier_salle(Salle_de_sport salleDeSport) throws SQLException {
-        String sql = " UPDATE `salle_de_sport` SET `nom_salle`=?,`description_salle`=?,`region_salle`=?,`image_salle`=?,`adresse_salle`=? WHERE id_salle=? ";
+        String sql = " UPDATE `salle` SET `nom_salle`=?,`description_salle`=?,`region_salle`=?,`image`=?,`adresse_salle`=? WHERE id=? ";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, salleDeSport.getNom_salle());
         preparedStatement.setString(2, salleDeSport.getDescription_salle());
@@ -75,7 +75,7 @@ public class SalleService implements IServiceA<Salle_de_sport> {
 
     @Override
     public void supprimer_salle(int id_salle) throws SQLException {
-        String sql = " DELETE FROM `salle_de_sport` WHERE id_salle=? ";
+        String sql = " DELETE FROM `salle` WHERE id=? ";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, id_salle);
         preparedStatement.executeUpdate();
@@ -84,20 +84,20 @@ public class SalleService implements IServiceA<Salle_de_sport> {
 
     @Override
     public List<Salle_de_sport> recuperer_salles() throws SQLException {
-        String sql = "SELECT * FROM `salle_de_sport`";
+        String sql = "SELECT * FROM `salle`";
         Statement statement = connection.createStatement();
         ResultSet rs = statement.executeQuery(sql);
         List<Salle_de_sport> list = new ArrayList<>();
         while (rs.next()) {
             Salle_de_sport s = new Salle_de_sport();
-            s.setId_salle(rs.getInt("id_salle"));
+            s.setId_salle(rs.getInt("id"));
             s.setNom_salle(rs.getString("nom_salle"));
             s.setDescription_salle(rs.getString("description_salle"));
 
             Salle_de_sport.EnumRegion region_salle = Salle_de_sport.EnumRegion.valueOf(rs.getString("region_salle"));
             s.setRegion_salle(region_salle);
 
-            s.setImage_salle(rs.getString("image_salle"));
+            s.setImage_salle(rs.getString("image"));
             s.setAdresse_salle(rs.getString("adresse_salle"));
             list.add(s);
         }
@@ -114,7 +114,7 @@ public class SalleService implements IServiceA<Salle_de_sport> {
 
         try {
             connection = statement.getConnection(); // Méthode pour obtenir la connexion à la base de données
-            String query = "SELECT * FROM votre_table WHERE id = ?";
+            String query = "SELECT * FROM salle WHERE id = ?";
             statement = connection.prepareStatement(query);
             statement.setInt(1, idSalle);
             resultSet = statement.executeQuery();

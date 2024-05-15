@@ -42,8 +42,9 @@ public class CommandeService implements ICommande{
                     resultSet.getString("description"),
                     resultSet.getDouble("prix"),
                     resultSet.getString("image"),
-                    CategorieProduit.valueOf(resultSet.getString("categorie"))
-            );
+                    resultSet.getString("categorie")
+
+                    );
             produits.add(produit);
         }
 

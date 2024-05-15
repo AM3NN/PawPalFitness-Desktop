@@ -88,7 +88,7 @@ public class ProduitService implements IServiceP<Produit>{
                     resultSet.getString("description"),
                     resultSet.getDouble("prix"),
                     resultSet.getString("image"),
-                    CategorieProduit.valueOf(resultSet.getString("categorie"))
+                    resultSet.getString("categorie")
             );
             produits.add(produit);
         }
@@ -112,7 +112,7 @@ public class ProduitService implements IServiceP<Produit>{
                     produit.setDescription(resultSet.getString("description"));
                     produit.setPrix(resultSet.getDouble("prix"));
                     produit.setImage(resultSet.getString("image"));
-                    produit.setCategorie(CategorieProduit.valueOf(resultSet.getString("categorie")));
+                    produit.setCategorie(resultSet.getString("categorie"));
                     produitsFiltres.add(produit);
                 }
             }

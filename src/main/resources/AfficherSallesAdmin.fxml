@@ -11,9 +11,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="380.0" prefWidth="530.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AfficherSallesAdmin">
+<AnchorPane prefHeight="380.0" prefWidth="530.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AfficherSallesAdmin">
     <Label layoutX="343.0" layoutY="57.0" prefHeight="60.0" prefWidth="298.0" style="-fx-font-size: 20pt;" text="Liste des salles de sport" />
 
     <TableView fx:id="tableView" layoutX="226.0" layoutY="127.0" prefHeight="319.0" prefWidth="518.0">
@@ -58,15 +57,10 @@
 
 
     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#011936" height="550.0" layoutX="-1.0" stroke="TRANSPARENT" strokeType="INSIDE" width="174.0" />
-    <Button id="btn_SideBar" fx:id="btn_profile"  alignment="CENTER" layoutX="20.0" layoutY="153.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="110.0" styleClass="btn_SideBar" stylesheets="@Style.css" text="Profile" textAlignment="CENTER" />
-    <Button id="btn_Sub" layoutX="33.0" layoutY="355.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="146.0" styleClass="btn_Sub" stylesheets="@/Style.css" text="Mes Abonnements">
-        <font>
-            <Font size="6.0" />
-        </font>
-    </Button>
-    <Button id="btn_SideBar" layoutX="20.0" layoutY="202.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="121.0" styleClass="btn_SideBar" stylesheets="@Style.css" text="Planning" />
-        <Button id="btn_SideBar" layoutX="16.0" layoutY="304.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="168.0" styleClass="btn_SideBar" stylesheets="@Style.css" text="Mes Produits" />
-    <Button id="btn_SideBar" fx:id="SU_Animal" layoutX="13.0" layoutY="253.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="174.0" styleClass="btn_SideBar" stylesheets="@Style.css" text="Mes Animaux" />
+    <Button id="btn_SideBar" fx:id="btn_profile" alignment="CENTER" layoutX="20.0" layoutY="153.0" mnemonicParsing="false" onAction="#profile" prefHeight="42.0" prefWidth="110.0" styleClass="btn_SideBar" stylesheets="@Style.css" text="Users" textAlignment="CENTER" />
+    <Button id="btn_SideBar" layoutX="20.0" layoutY="202.0" mnemonicParsing="false" onAction="#CheckWorkers" prefHeight="41.0" prefWidth="121.0" styleClass="btn_SideBar" stylesheets="@Style.css" text="Workers" />
+        <Button id="btn_SideBar" layoutX="16.0" layoutY="304.0" mnemonicParsing="false" onAction="#reservation" prefHeight="43.0" prefWidth="168.0" styleClass="btn_SideBar" stylesheets="@Style.css" text="Reservations" />
+    <Button id="btn_SideBar" fx:id="SU_Animal" layoutX="-12.0" layoutY="253.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="174.0" styleClass="btn_SideBar" stylesheets="@Style.css" text="Salles" />
     <ImageView fitHeight="34.0" fitWidth="39.0" layoutX="13.0" layoutY="22.0">
         <image>
             <Image url="@moree.png" />
@@ -92,7 +86,6 @@
             <Image url="@task.png" />
         </image>
     </ImageView>
-    <Button id="btn_NavBar" layoutX="27.0" layoutY="504.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="146.0" styleClass="btn_NavBar" stylesheets="@Style.css" text="Quitter" />
     <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="14.0" layoutY="364.0">
         <image>
             <Image url="@subscription.png" />
@@ -118,6 +111,19 @@
     <Button layoutX="479.0" layoutY="491.0" onAction="#SupprimerSalle" text="Supprimer" />
     <Button layoutX="398.0" layoutY="491.0" onAction="#ModifierSalle" text="Modifier" />
    <Button layoutX="574.0" layoutY="491.0" mnemonicParsing="false" onAction="#Map" text="Map" />
+   <Button id="btn_SideBar" layoutX="16.0" layoutY="354.0" mnemonicParsing="false" onAction="#animaux" prefHeight="43.0" prefWidth="168.0" styleClass="btn_SideBar" stylesheets="@Style.css" text="Animaux" />
+   <Button id="btn_SideBar" layoutX="16.0" layoutY="397.0" mnemonicParsing="false" onAction="#produit" prefHeight="43.0" prefWidth="168.0" styleClass="btn_SideBar" stylesheets="@Style.css" text="Produits" />
+   <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="15.0" layoutY="407.0">
+      <image>
+         <Image url="@subscription.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="148.0" layoutY="504.0">
+      <image>
+         <Image url="@back-button.png" />
+      </image>
+   </ImageView>
+   <Button id="btn_NavBar" layoutX="1.0" layoutY="501.0" mnemonicParsing="false" onAction="#Logout" prefHeight="30.0" prefWidth="146.0" styleClass="btn_NavBar" stylesheets="@styles.css" text="Quitter" />
 
 
 </AnchorPane>

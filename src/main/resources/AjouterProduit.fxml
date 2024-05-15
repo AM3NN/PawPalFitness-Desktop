@@ -35,10 +35,9 @@
             <Image url="@moree.png" />
          </image>
       </ImageView>
-      <Button id="btn_NavBar" layoutX="48.0" layoutY="524.0" mnemonicParsing="false" onAction="#Logout" prefHeight="30.0" prefWidth="146.0" styleClass="btn_NavBar" stylesheets="@styles.css" text="Quitter" />
       <Button fx:id="btn_users" alignment="CENTER" layoutX="41.0" layoutY="173.0" mnemonicParsing="false" onAction="#CheckUsers" prefHeight="42.0" prefWidth="110.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Users" textAlignment="CENTER" />
       <Button id="btn_SideBar" fx:id="btn_workers" layoutX="39.0" layoutY="220.0" mnemonicParsing="false" onAction="#CheckWorkers" prefHeight="41.0" prefWidth="121.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Workers" />
-      <Button id="btn_SideBar" fx:id="btn_reservations" layoutX="31.0" layoutY="262.0" mnemonicParsing="false" onAction="#reservation" prefHeight="42.0" prefWidth="158.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Reservations" />
+      <Button id="btn_SideBar" fx:id="btn_reservations" layoutX="34.0" layoutY="312.0" mnemonicParsing="false" onAction="#reservation" prefHeight="42.0" prefWidth="158.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Reservations" />
       <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="34.0" layoutY="182.0">
          <image>
             <Image url="@profile.png" />
@@ -49,16 +48,34 @@
             <Image url="@task.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="25.0" layoutY="271.0">
+      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="22.0" layoutY="321.0">
          <image>
             <Image url="@subscription.png" />
          </image>
       </ImageView>
-      <Button id="btn_SideBar" fx:id="btn_produit" layoutX="34.0" layoutY="304.0" mnemonicParsing="false" onAction="#produit" prefHeight="42.0" prefWidth="158.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Produits" />
-      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="28.0" layoutY="313.0">
+      <Button id="btn_SideBar" fx:id="btn_produit" layoutX="34.0" layoutY="398.0" mnemonicParsing="false" onAction="#produit" prefHeight="34.0" prefWidth="158.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Produits" />
+      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="27.0" layoutY="404.0">
          <image>
             <Image url="@subscription.png" />
          </image>
       </ImageView>
+      <Button id="btn_SideBar" fx:id="btn_produit1" layoutX="34.0" layoutY="268.0" mnemonicParsing="false" onAction="#CheckRes" prefHeight="42.0" prefWidth="158.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Salles" />
+      <Button id="btn_SideBar" fx:id="btn_produit11" layoutX="31.0" layoutY="356.0" mnemonicParsing="false" onAction="#animaux" prefHeight="42.0" prefWidth="158.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Animaux" />
+      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="22.0" layoutY="365.0">
+         <image>
+            <Image url="@subscription.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="29.0" layoutY="277.0">
+         <image>
+            <Image url="@subscription.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="158.0" layoutY="516.0">
+         <image>
+            <Image url="@back-button.png" />
+         </image>
+      </ImageView>
+      <Button id="btn_NavBar" layoutX="11.0" layoutY="513.0" mnemonicParsing="false" onAction="#Logout" prefHeight="30.0" prefWidth="146.0" styleClass="btn_NavBar" stylesheets="@styles.css" text="Quitter" />
    </children>
 </AnchorPane>

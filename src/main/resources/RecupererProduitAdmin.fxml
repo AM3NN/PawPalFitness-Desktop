@@ -15,7 +15,6 @@
 <AnchorPane prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RecupererProduitAdmin">
 
     <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#011936" height="554.0" stroke="TRANSPARENT" strokeType="INSIDE" width="171.0" />
         <HBox alignment="CENTER_LEFT" spacing="10" AnchorPane.leftAnchor="180" AnchorPane.topAnchor="80">
             <VBox fx:id="categoryContainer" style="-fx-margin-left: 20;" />
         </HBox>
@@ -37,31 +36,49 @@
          </image>
       </ImageView>
       <Hyperlink fx:id="btn_home" layoutX="194.0" layoutY="10.0" text="Home" />
-      <Button id="btn_NavBar" layoutX="38.0" layoutY="514.0" mnemonicParsing="false" onAction="#Logout" prefHeight="30.0" prefWidth="146.0" styleClass="btn_NavBar" stylesheets="@styles.css" text="Quitter" />
-      <Button fx:id="btn_users" alignment="CENTER" layoutX="31.0" layoutY="163.0" mnemonicParsing="false" onAction="#CheckUsers" prefHeight="42.0" prefWidth="110.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Users" textAlignment="CENTER" />
-      <Button id="btn_SideBar" fx:id="btn_workers" layoutX="29.0" layoutY="210.0" mnemonicParsing="false" onAction="#CheckWorkers" prefHeight="41.0" prefWidth="121.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Workers" />
-      <Button id="btn_SideBar" fx:id="btn_reservations" layoutX="21.0" layoutY="252.0" mnemonicParsing="false" onAction="#reservation" prefHeight="42.0" prefWidth="158.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Reservations" />
-      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="24.0" layoutY="172.0">
+      <Button layoutX="193.0" layoutY="501.0" mnemonicParsing="false" onAction="#addProduit" styleClass="button-design" stylesheets="@styles.css" text="Ajouter Produit" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#011936" height="556.0" layoutX="-5.0" layoutY="-4.0" stroke="TRANSPARENT" strokeType="INSIDE" width="174.0" />
+      <Button id="btn_SideBar" fx:id="btn_profile" alignment="CENTER" layoutX="16.0" layoutY="149.0" mnemonicParsing="false" onAction="#CheckUsers" prefHeight="42.0" prefWidth="110.0" styleClass="btn_SideBar" stylesheets="@Style.css" text="Users" textAlignment="CENTER" />
+      <Button id="btn_SideBar" layoutX="16.0" layoutY="198.0" mnemonicParsing="false" onAction="#CheckWorkers" prefHeight="41.0" prefWidth="121.0" styleClass="btn_SideBar" stylesheets="@Style.css" text="Workers" />
+      <Button id="btn_SideBar" layoutX="12.0" layoutY="300.0" mnemonicParsing="false" onAction="#reservation" prefHeight="43.0" prefWidth="168.0" styleClass="btn_SideBar" stylesheets="@Style.css" text="Reservations" />
+      <Button id="btn_SideBar" fx:id="SU_Animal" layoutX="-16.0" layoutY="249.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="174.0" styleClass="btn_SideBar" stylesheets="@Style.css" text="Salles" />
+      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="9.0" layoutY="310.0">
+         <image>
+            <Image url="@cart.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="9.0" layoutY="259.0">
+         <image>
+            <Image url="@paw.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="9.0" layoutY="158.0">
          <image>
             <Image url="@profile.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="22.0" layoutY="219.0">
+      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="9.0" layoutY="207.0">
          <image>
             <Image url="@task.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="15.0" layoutY="261.0">
+      <Button id="btn_SideBar" layoutX="12.0" layoutY="350.0" mnemonicParsing="false" onAction="#animaux" prefHeight="43.0" prefWidth="168.0" styleClass="btn_SideBar" stylesheets="@Style.css" text="Animaux" />
+      <Button id="btn_SideBar" layoutX="12.0" layoutY="393.0" mnemonicParsing="false" onAction="#produit" prefHeight="43.0" prefWidth="168.0" styleClass="btn_SideBar" stylesheets="@Style.css" text="Produits" />
+      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="9.0" layoutY="360.0">
          <image>
-            <Image url="@subscription.png" />
+            <Image url="@cart.png" />
          </image>
       </ImageView>
-      <Button id="btn_SideBar" fx:id="btn_produit" layoutX="24.0" layoutY="294.0" mnemonicParsing="false" onAction="#produit" prefHeight="42.0" prefWidth="158.0" styleClass="btn_SideBar" stylesheets="@styles.css" text="Produits" />
-      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="18.0" layoutY="303.0">
+      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="9.0" layoutY="403.0">
          <image>
-            <Image url="@subscription.png" />
+            <Image url="@cart.png" />
          </image>
       </ImageView>
-      <Button layoutX="193.0" layoutY="501.0" mnemonicParsing="false" text="Ajouter Produit"  stylesheets="@styles.css" styleClass="button-design" onAction="#addProduit"/>
+      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="132.0" layoutY="514.0">
+         <image>
+            <Image url="@back-button.png" />
+         </image>
+      </ImageView>
+      <Button id="btn_NavBar" layoutX="-2.0" layoutY="511.0" mnemonicParsing="false" onAction="#Logout" prefHeight="30.0" prefWidth="146.0" styleClass="btn_NavBar" stylesheets="@styles.css" text="Quitter" />
     </children>
 </AnchorPane>

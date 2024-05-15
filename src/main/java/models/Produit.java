@@ -9,11 +9,11 @@ public class Produit {
     private String description;
     private double prix;
     private String image;
-    private CategorieProduit categorie;
+    private String categorie;
 
     public Produit(){}
 
-    public Produit(int idP, String reference, String nom, String description, double prix, String image, CategorieProduit categorie) {
+    public Produit(int idP, String reference, String nom, String description, double prix, String image, String categorie) {
         this.idP = idP;
         this.reference = reference;
         this.nom = nom;
@@ -23,7 +23,7 @@ public class Produit {
         this.categorie = categorie;
     }
 
-    public Produit(String reference, String nom, String description, double prix, String image, CategorieProduit categorie) {
+    public Produit(String reference, String nom, String description, double prix, String image, String categorie) {
         this.reference = reference;
         this.nom = nom;
         this.description = description;
@@ -80,11 +80,11 @@ public class Produit {
         this.image = image;
     }
 
-    public CategorieProduit getCategorie() {
+    public String getCategorie() {
         return categorie;
     }
 
-    public void setCategorie(CategorieProduit categorie) {
+    public void setCategorie(String categorie) {
         this.categorie = categorie;
     }
 
@@ -102,7 +102,7 @@ public class Produit {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Produit produit = (Produit) o;
-        return idP == produit.idP && Double.compare(prix, produit.prix) == 0 && Objects.equals(reference, produit.reference) && Objects.equals(nom, produit.nom) && Objects.equals(description, produit.description) && Objects.equals(image, produit.image) && categorie == produit.categorie;
+        return idP == produit.idP && Double.compare(prix, produit.prix) == 0 && Objects.equals(reference, produit.reference) && Objects.equals(nom, produit.nom) && Objects.equals(description, produit.description) && Objects.equals(image, produit.image) && Objects.equals(categorie, produit.categorie);
     }
 
     @Override
