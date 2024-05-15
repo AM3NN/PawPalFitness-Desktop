@@ -123,8 +123,17 @@ public class backanimal {
     }
 
     @FXML
-    void Logout(ActionEvent event) {
-
+    void Logout(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/SignIn.fxml"));
+            Parent signInRoot = loader.load();
+            Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            primaryStage.setScene(new Scene(signInRoot));
+            primaryStage.setTitle("Sign In");
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

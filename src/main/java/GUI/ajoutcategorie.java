@@ -1,14 +1,20 @@
 package GUI;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import models.Categorie;
 import services.CategorieService;
 
@@ -86,17 +92,44 @@ public class ajoutcategorie {
 
     @FXML
     void CheckUsers(ActionEvent event) {
-
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherPersonne.fxml"));
+            Parent signInRoot = loader.load();
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            primaryStage.setScene(new Scene(signInRoot));
+            primaryStage.setTitle("Afficher Simple Utilisateur");
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void CheckWorkers(ActionEvent event) {
-
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherTravailleur.fxml"));
+            Parent signInRoot = loader.load();
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            primaryStage.setScene(new Scene(signInRoot));
+            primaryStage.setTitle("Afficher Travailleur");
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
-    void Logout(ActionEvent event) {
-
+    void Logout(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/SignIn.fxml"));
+            Parent signInRoot = loader.load();
+            Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            primaryStage.setScene(new Scene(signInRoot));
+            primaryStage.setTitle("Sign In");
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -111,12 +144,30 @@ public class ajoutcategorie {
 
     @FXML
     void produit(ActionEvent event) {
-
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/RecupererProduitAdmin.fxml"));
+            Parent signInRoot = loader.load();
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            primaryStage.setScene(new Scene(signInRoot));
+            primaryStage.setTitle("Produit");
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void reservation(ActionEvent event) {
-
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterReservation.fxml"));
+            Parent signInRoot = loader.load();
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            primaryStage.setScene(new Scene(signInRoot));
+            primaryStage.setTitle("Reservation");
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
