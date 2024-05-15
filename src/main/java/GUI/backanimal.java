@@ -89,10 +89,7 @@ public class backanimal {
             e.printStackTrace();
         }
     }
-    @FXML
-    void Abonnements(ActionEvent event) {
 
-    }
 
     @FXML
     void CheckUsers(ActionEvent event) {
@@ -116,6 +113,19 @@ public class backanimal {
             Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             primaryStage.setScene(new Scene(signInRoot));
             primaryStage.setTitle("Afficher Travailleur");
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void Abonnements(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherSallesAdmin.fxml"));
+            Parent signInRoot = loader.load();
+            Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            primaryStage.setScene(new Scene(signInRoot));
+            primaryStage.setTitle("Produit");
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
